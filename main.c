@@ -25,12 +25,14 @@ void	ft_get_path(char *envp[])
 	}
 }
 
+#include <string.h>
+
 int main(int argc, char *argv[], char *envp[])
 {
 	if (argc != 5)
 	{
 		errno = 22;
-		perror("You need 4 command line arguments !");		
+		perror("You need 4 command line arguments !");
 		exit(errno);
 	}
 	ft_get_path(envp);
