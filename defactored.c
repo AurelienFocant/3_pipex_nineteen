@@ -7,18 +7,20 @@ void	ft_fork_exec(char *envp[])
 	pid_t	pid;
 	int	e;
 	char	*argv[] = {"ls", "-l", NULL};
-	char	*cmd;
+	char	*cmd = "/bin/ls";
 
 	pid = fork();
 	if (pid == 0)
 	{
-		e = execve("ls", argv, envp);
-		//printf("return value of exec is %i\n", e);
+		e = execve(cmd, argv, envp);
+		printf("return value of exec is %i\n", e);
 		perror(NULL);
+		exit(0);
 	}
 	else
 	{
 		wait(NULL);
+		printf("this is the parent process");
 	}
 }
 
@@ -31,42 +33,46 @@ void	ft_print_env(char *envp[])
 		printf("%s\n", envp[i++]);
 }
 
-/*
-void	ft_get_path(char *envp[])
+char	**ft_get_path(char *envp[])
 {
 	size_t	i;
 	char	**envs;
-	char	**paths;
 
+	envs = NULL;
 	i = 0;
 	while (envp[i])
 	{
 		envs = ft_split(envp[i], '=');
-		if (ft_strncmp(envs[0], "PATH", 256) == 0)
-		{
-			paths = ft_split(envs[1], ':');	
-			break;
-		}
+		if (ft_strncmp(envs[0], "PATH", ft_strlen("PATH")) == 0)
+			return (ft_split(envs[1], ':'));	
 		i++;
 	}
-	i = 0;
-	while (paths[i])
+	if (!envp[i])
 	{
-		printf("%s\n", paths[i]);
-		i++;
+		errno = ENOENT;
+		perror("No valid $PATH env was provided");
+		exit(errno);
 	}
+	return (NULL);
 }
-*/
 
 int main(int argc, char *argv[], char *envp[])
 {
+	char	**path;
+
+	path = NULL;
 	if (argc != 5)
 	{
 		errno = 22;
 		perror("You need 4 command line arguments !");
 		exit(errno);
 	}
-	//ft_get_path(envp);
+	path = ft_get_path(envp);
+	while (path && *path)
+		printf("%s\n", *path++);
 	//ft_print_env(envp);
-	ft_fork_exec(envp);
+	//ft_fork_exec(envp);
 }
+
+/*
+*/
