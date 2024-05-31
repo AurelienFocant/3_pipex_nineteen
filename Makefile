@@ -8,7 +8,7 @@ DFLAGS	=	-fsanitize=address -fsanitize=undefined
 
 ###########################################################
 
-NAME	= 	a.out
+NAME	=	pipex
 
 SRC	=	$(wildcard *.c)
 

@@ -52,3 +52,5 @@ void	errors(void)
 	open
 	if file exists or not
 }
+
+free cmd1 !!
