@@ -6,6 +6,8 @@ GFLAGS	=	-g
 
 DFLAGS	=	-fsanitize=address -fsanitize=undefined
 
+###########################################################
+
 NAME	= 	a.out
 
 SRC	=	$(wildcard *.c)
@@ -39,7 +41,7 @@ fclean:		clean
 	rm -rf $(NAME) *dSYM 
 
 libclean:
-	rm -rf $(LIB_DIR)/$(LIB)
+	rm -rf $(LIB)
 
 re: fclean all
 

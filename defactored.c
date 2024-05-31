@@ -33,6 +33,7 @@ char	**ft_get_path(char *envp[])
 {
 	size_t	i;
 	char	**envs;
+	char	**path;
 
 	envs = NULL;
 	i = 0;
@@ -57,7 +58,7 @@ void	ft_print_errno(void)
 	printf("errno is %i\n", errno);
 }
 
-int main(int argc, char *argv[], char *envp[])
+int old_main(int argc, char *argv[], char *envp[])
 {
 	char	**path;
 	char	*infile;
@@ -97,4 +98,5 @@ int main(int argc, char *argv[], char *envp[])
 		printf("%s\n", infile);
 
 	ft_fork_exec(envp);
+	exit(0);
 }

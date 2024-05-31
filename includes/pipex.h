@@ -16,7 +16,10 @@
 # define STRERR 2
 
 void	ft_fork_exec(char *envp[]);
-void	ft_print_env(char *envp[]);
+void	ft_print_strv(char *strv[]);
 char	**ft_get_path(char *envp[]);
+
+int	check_args(int argc);
+int	perror_exit(char *error, int errnb);
 
 #endif

@@ -1,5 +1,3 @@
-void 	structure(void)
-{
 	main
 
 	check errors args
@@ -7,9 +5,11 @@ void 	structure(void)
 	find path env
 
 	parse commands
-		no need -- just prepend path
-			if executable doesnt exist exec fails
-				== returns -1
+		access - is executable ?
+		if not
+			append /
+			append path
+			access - is executable ?
 
 	parse infile -- access ?
 
