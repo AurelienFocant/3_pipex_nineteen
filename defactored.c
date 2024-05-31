@@ -12,10 +12,9 @@ void	ft_fork_exec(char *envp[])
 	pid = fork();
 	if (pid == 0)
 	{
-		e = execve(cmd, argv, envp);
-		printf("return value of exec is %i\n", e);
-		perror(NULL);
-		exit(0);
+		execve(cmd, argv, envp);
+		perror("Could not find executable");
+		exit(errno);
 	}
 	else
 	{
@@ -24,13 +23,10 @@ void	ft_fork_exec(char *envp[])
 	}
 }
 
-void	ft_print_env(char *envp[])
+void	ft_print_argv(char *argv[])
 {
-	size_t	i;
-
-	i = 0;
-	while (envp[i])
-		printf("%s\n", envp[i++]);
+	while (argv && *argv)
+		printf("%s\n", *argv++);
 }
 
 char	**ft_get_path(char *envp[])
@@ -43,7 +39,7 @@ char	**ft_get_path(char *envp[])
 	while (envp[i])
 	{
 		envs = ft_split(envp[i], '=');
-		if (ft_strncmp(envs[0], "PATH", ft_strlen("PATH")) == 0)
+		if (ft_strncmp(envs[0], "jPATH", ft_strlen("PATH")) == 0)
 			return (ft_split(envs[1], ':'));	
 		i++;
 	}
@@ -56,9 +52,15 @@ char	**ft_get_path(char *envp[])
 	return (NULL);
 }
 
+void	ft_print_errno(void)
+{
+	printf("errno is %i\n", errno);
+}
+
 int main(int argc, char *argv[], char *envp[])
 {
 	char	**path;
+	char	*infile;
 
 	path = NULL;
 	if (argc != 5)
@@ -68,11 +70,31 @@ int main(int argc, char *argv[], char *envp[])
 		exit(errno);
 	}
 	path = ft_get_path(envp);
-	while (path && *path)
-		printf("%s\n", *path++);
-	//ft_print_env(envp);
-	//ft_fork_exec(envp);
-}
+	if (!path)
+		printf("no path\n");
 
 /*
+	ft_print_argv(path);
+	printf("\n\n\n");
+	ft_print_argv(envp);
 */
+
+	ft_print_errno();
+	infile = argv[1];
+	if (open(infile, O_RDONLY) == -1)
+	{
+		ft_print_errno();
+		perror("error on open");
+		exit(errno);
+	}
+
+	if (access(infile, R_OK) == -1)
+	{
+		perror("error on access");
+		exit(errno);
+	}
+	else
+		printf("%s\n", infile);
+
+	ft_fork_exec(envp);
+}
