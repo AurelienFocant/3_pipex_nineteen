@@ -2,6 +2,7 @@
 
 *.swp
 
+pipex
 a.out*
 *.o
 

@@ -129,6 +129,14 @@ int	check_infile(char *infile)
 	return (1);
 }
 
+int	check_outfile(char *outfile)
+{
+	if (access(outfile, F_OK) == 0)
+		if (access(outfile, W_OK) == 1)
+			return (0);
+	return (1);
+}
+
 void	print_strv(char **strv)
 {
 	while (strv && *strv)
@@ -176,6 +184,8 @@ int	main(int argc, char **argv, char **envp)
 		perror_exit(NULL, EINVAL);
 	if (!check_infile(argv[1]))
 		perror_exit("Infile doesn't exist", ENOENT);
+	if (!check_outfile(argv[4]))
+		perror_exit("Outfile doesn't have the right permissions", EACCES);
 	if (check_cmd(argv[2]) && check_cmd(argv[3]))
 		return (pipe_exec(argv, envp));
 	fork_proc(argv, envp);
