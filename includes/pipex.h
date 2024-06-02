@@ -1,15 +1,15 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <sys/wait.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <errno.h>
+# include <sys/wait.h>
 
-#include "pipex.h"
-#include "libft.h"
+# include "pipex.h"
+# include "libft.h"
 
 # define STDIN 0
 # define STDOUT 1
@@ -33,4 +33,5 @@ void	print_strv(char **strv);
 void	free_null(void *ptr);
 char	**get_path(char **envp);
 int	main(int argc, char **argv, char **envp);
+
 #endif
