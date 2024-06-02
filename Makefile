@@ -1,6 +1,6 @@
 CC	=	cc
 
-aCFLAGS	=	-Wall -Wextra -Werror 
+CFLAGS	=	-Wall -Wextra -Werror 
 
 GFLAGS	=	-g
 
@@ -41,6 +41,7 @@ fclean:		clean
 	rm -rf $(NAME) *dSYM 
 
 libclean:
+	rm -rf $(LIB_DIR)/*.o
 	rm -rf $(LIB)
 
 re: fclean all
