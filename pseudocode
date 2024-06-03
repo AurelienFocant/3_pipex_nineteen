@@ -56,3 +56,5 @@ void	errors(void)
 }
 
 free cmd1 !!
+
+free path -- check all mallocs
