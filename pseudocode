@@ -45,6 +45,8 @@ void	unknowns(void)
 
 void	errors(void)
 {
+	error on dup2 !!
+
 	exec
 	fork
 	read

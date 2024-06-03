@@ -18,7 +18,8 @@ int	write_infile_to_pipe(int pipefd, char **argv, char **envp)
 	dup2(infile, STDIN_FILENO);
 	dup(STDOUT_FILENO);
 	dup2(pipefd, STDOUT_FILENO);
-	execve(cmd1, ft_split(argv[2], ' '), envp);
+	if (execve(cmd1, ft_split(argv[2], ' '), envp))
+		perror("Exec call failed");
 	free_null(cmd1);
 	return (EXIT_FAILURE);
 }
@@ -29,7 +30,7 @@ int	write_pipe_to_outfile(int pipefd, char **argv, char **envp)
 	char	**path;
 	int		outfile;
 
-	outfile = open(argv[4], O_WRONLY | O_CREAT);
+	outfile = open(argv[4], O_CREAT | O_TRUNC | O_WRONLY);
 	if (outfile == -1)
 		perror_exit("Couldn't open infile", errno);
 	path = get_path(envp);
@@ -41,7 +42,8 @@ int	write_pipe_to_outfile(int pipefd, char **argv, char **envp)
 	dup2(pipefd, STDIN_FILENO);
 	dup(STDOUT_FILENO);
 	dup2(outfile, STDOUT_FILENO);
-	execve(cmd2, ft_split(argv[3], ' '), envp);
+	if (execve(cmd2, ft_split(argv[3], ' '), envp) == -1)
+		perror("Exec call failed");
 	free_null(cmd2);
 	return (EXIT_FAILURE);
 }
