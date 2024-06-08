@@ -9,3 +9,5 @@ a.out*
 outfile
 
 tags
+
+./libft/libft.a
