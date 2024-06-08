@@ -4,11 +4,11 @@ check_cmd	utils_errors.c	/^int	check_cmd(char *cmd)$/
 check_infile	utils_errors.c	/^int	check_infile(char *infile)$/
 check_outfile	utils_errors.c	/^int	check_outfile(char *outfile)$/
 fork_proc	main.c	/^int	fork_proc(char **argv, char **envp)$/
-free_null	main.c	/^void	free_null(void *ptr)$/
-get_path	main.c	/^char	**get_path(char **envp)$/
+free_null	general_utils.c	/^void	free_null(void *ptr)$/
+get_path	general_utils.c	/^char	**get_path(char **envp)$/
 perror_exit	utils_errors.c	/^int	perror_exit(char *error, int errnb)$/
 pipe_exec	main.c	/^int	pipe_exec(char **argv, char **envp)$/
-prepend_path_cmd	main.c	/^char	*prepend_path_cmd(char **path, char *cmd)$/
-print_strv	main.c	/^void	print_strv(char **strv)$/
+prepend_path_cmd	general_utils.c	/^char	*prepend_path_cmd(char **path, char *cmd)$/
+print_strv	general_utils.c	/^void	print_strv(char **strv)$/
 write_infile_to_pipe	main.c	/^int	write_infile_to_pipe(int pipefd, char **argv, /
 write_pipe_to_outfile	main.c	/^int	write_pipe_to_outfile(int pipefd, char **argv,/
