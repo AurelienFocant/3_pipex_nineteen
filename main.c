@@ -6,18 +6,22 @@ int	write_infile_to_pipe(int pipefd, char **argv, char **envp)
 	char	**path;
 	int		infile;
 
+	path = NULL;
 	infile = open(argv[1], O_RDONLY);
 	if (infile == -1)
 		perror_exit("Couldn't open infile", errno);
-	path = get_path(envp);
-	cmd1 = prepend_path_cmd(path, argv[2]);
-	free_null(path);
+	if (check_cmd(argv[2]))
+		cmd1 = ft_strdup(argv[2]);
+	else
+	{
+		path = get_path(envp);
+		cmd1 = prepend_path_cmd(path, argv[2]);
+		free_null(path);
+	}
 	if (!cmd1)
 		return (-1);
-	dup(STDIN_FILENO);
-	dup2(infile, STDIN_FILENO);
-	dup(STDOUT_FILENO);
-	dup2(pipefd, STDOUT_FILENO);
+	if (dup2(infile, STDIN_FILENO) == -1 || dup2(pipefd, STDOUT_FILENO) == -1)
+		perror_exit("dup call failed", errno);
 	if (execve(cmd1, ft_split(argv[2], ' '), envp))
 		perror("Exec call failed");
 	free_null(cmd1);
