@@ -3,7 +3,7 @@
 *.swp
 
 pipex
-a.out*
+*out*
 *.o
 
 outfile
