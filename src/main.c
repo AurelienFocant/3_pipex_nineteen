@@ -1,4 +1,5 @@
 #include "pipex.h"
+#include <stdio.h>
 
 int	write_infile_to_pipe(int pipefd, char **argv, char **envp)
 {

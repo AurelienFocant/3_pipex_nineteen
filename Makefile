@@ -10,9 +10,13 @@ DFLAGS	=	-fsanitize=address -fsanitize=undefined
 
 NAME	=	pipex
 
-SRC	=	$(wildcard *.c)
+SRC_DIR	=	./src
 
-OBJ	=	$(SRC:.c=.o)
+SRC	=	$(wildcard $(SRC_DIR)/*.c)
+
+OBJ_DIR	=	./obj
+
+OBJ	=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 LIB_DIR	=	./libft
 
@@ -26,16 +30,21 @@ lib:		$(LIB)
 
 $(NAME):	$(OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(OBJ) -o $@ -L$(LIB_DIR) -lft
-	
+
 
 $(LIB):
 	$(MAKE) -C $(LIB_DIR)
 
-%.o: %.c
+$(OBJ):		$(OBJ_DIR)
+
+$(OBJ_DIR):
+	mkdir -p obj
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -Iincludes -c $< -o $@
 
 clean:
-	rm -rf *.o
+	rm -rf $(OBJ_DIR)
 
 fclean:		clean
 	rm -rf $(NAME) *dSYM 
@@ -46,4 +55,4 @@ libclean:
 
 re: fclean all
 
-PHONY: all lib clean fclean libclean re
+.PHONY: all lib clean fclean libclean re
