@@ -16,7 +16,8 @@ SRC	=	$(wildcard $(SRC_DIR)/*.c)
 
 OBJ_DIR	=	./obj
 
-OBJ	=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+OBJ	=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+#OBJ	=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 LIB_DIR	=	./libft
 
