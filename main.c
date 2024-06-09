@@ -34,7 +34,7 @@ int	write_pipe_to_outfile(int pipefd, char **argv, char **envp)
 	char	**path;
 	int		outfile;
 
-	outfile = open(argv[4], O_CREAT | O_TRUNC | O_WRONLY);
+	outfile = open(argv[4], O_CREAT | O_TRUNC | O_RDWR, 0666);
 	if (outfile == -1)
 		perror_exit("Couldn't open infile", errno);
 	path = get_path(envp);
