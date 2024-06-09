@@ -35,13 +35,11 @@ $(NAME):	$(OBJ) $(LIB)
 $(LIB):
 	$(MAKE) -C $(LIB_DIR)
 
-$(OBJ):		$(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -Iincludes -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p obj
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -Iincludes -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
