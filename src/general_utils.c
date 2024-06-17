@@ -63,6 +63,9 @@ void	print_strv(char **strv)
 
 void	free_null(void *ptr)
 {
-	free(ptr);
-	ptr = NULL;
+	if (ptr)
+	{
+		free(ptr);
+		ptr = NULL;
+	}
 }
