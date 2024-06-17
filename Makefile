@@ -23,6 +23,8 @@ LIB_DIR	=	./libft
 
 LIB	=	$(LIB_DIR)/libft.a
 
+.PHONY: all lib clean fclean libclean re
+
 ###########################################################
 
 all:		$(NAME)
@@ -53,5 +55,3 @@ libclean:
 	rm -rf $(LIB)
 
 re: fclean all
-
-.PHONY: all lib clean fclean libclean re
