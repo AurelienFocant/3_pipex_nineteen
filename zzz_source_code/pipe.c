@@ -1,3 +1,11 @@
+/************
+* from:
+*  https://people.cs.rutgers.edu/~pxk/416/notes/c-tutorials/pipe.html
+*
+*
+************/
+
+
 /*
 	Sample progam illustrating the use of Unix pipes between processes.
 	Paul Krzyzanowski
