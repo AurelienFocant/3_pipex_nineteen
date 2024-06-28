@@ -11,9 +11,12 @@
 # include "pipex.h"
 # include "libft.h"
 
-# define STDIN 0
-# define STDOUT 1
-# define STRERR 2
+# define STDIN	0
+# define STDOUT	1
+# define STRERR	2
+
+# define FALSE	0
+# define TRUE	1
 
 int	check_args(int argc);
 int	perror_exit(char *error, int errnb);
@@ -27,7 +30,8 @@ int	write_pipe_to_outfile(int pipefd, char **argv, char **envp);
 int	pipe_exec(char **argv, char **envp);
 int	fork_proc(char **argv, char **envp);
 void	print_strv(char **strv);
-void	free_null(void *ptr);
+void	free_null(char *ptr);
+void	free_null_strv(char **ptr);
 char	**get_path(char **envp);
 
 #endif

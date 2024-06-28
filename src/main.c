@@ -1,105 +1,111 @@
-#include "pipex.h"
-#include <stdio.h>
+#include "../includes/pipex.h"
 
-int	write_infile_to_pipe(int pipefd, char **argv, char **envp)
+void	ft_free_null(char *ptr)
 {
-	char	*cmd1;
-	char	**path;
-	int		infile;
+	free(ptr);
+	ptr = NULL;
+}
 
+void	ft_free_null_strv(char **strv)
+{
+	while (*strv)
+	{
+		ft_free_null(*strv);
+		strv++;
+	}
+}
+
+int	ft_perror_exit(char *error, int errnb)
+{
+	perror(error);
+	exit(errnb);
+}
+
+int	ft_check_valid_files(char *infile, char *outfile)
+{
+	if (access(infile, R_OK) == -1)
+		return (FALSE);
+	if (access(outfile, F_OK) == 0)
+		if (access(outfile, W_OK) == -1)
+			return (FALSE);
+	return (TRUE);
+}
+
+size_t	ft_count_commands(char **argv)
+{
+	size_t nb_of_files;
+	size_t	i;
+
+	nb_of_files = 2;
+	i = 0;
+	while (argv[i])
+		i++;
+	return (i - nb_of_files);
+}
+
+char	**ft_get_path(char **envp)
+{
+	char	**env;
+	char	**path;
+
+	env = NULL;
 	path = NULL;
-	infile = open(argv[1], O_RDONLY);
-	if (infile == -1)
-		perror_exit("Couldn't open infile", errno);
-	if (check_cmd(argv[2]))
-		cmd1 = ft_strdup(argv[2]);
-	else
+	while (*envp)
 	{
-		path = get_path(envp);
-		cmd1 = prepend_path_cmd(path, argv[2]);
-		free_null(path);
+		env = ft_split(*envp, '=');
+		if (!env)
+			ft_perror_exit("Error parsing env", ENOENT);
+		if (ft_strncmp(env[0], "PATH", ft_strlen("PATH")) == 0)
+		{
+			path = (ft_split(env[1], ':'));
+			ft_free_null_strv(env);
+			if (!path)
+				ft_perror_exit("No valid $PATH was provided", ENOENT);
+			return (path);
+		}
+		ft_free_null_strv(env);
+		envp++;
 	}
-	if (!cmd1)
-		return (-1);
-	if (dup2(infile, STDIN_FILENO) == -1 || dup2(pipefd, STDOUT_FILENO) == -1)
-		perror_exit("dup call failed", errno);
-	if (execve(cmd1, ft_split(argv[2], ' '), envp))
-		perror("Exec call failed");
-	free_null(cmd1);
-	return (EXIT_FAILURE);
+	return (NULL);
 }
 
-int	write_pipe_to_outfile(int pipefd, char **argv, char **envp)
+int	ft_check_if_cmd_is_executable(char *cmd, char **envp)
 {
-	char	*cmd2;
 	char	**path;
-	int		outfile;
 
-	outfile = open(argv[4], O_CREAT | O_TRUNC | O_RDWR, 0666);
-	if (outfile == -1)
-		perror_exit("Couldn't open infile", errno);
-	path = get_path(envp);
-	cmd2 = prepend_path_cmd(path, argv[3]);
-	free_null(path);
-	if (!cmd2)
-		return (-1);
-	dup(STDIN_FILENO);
-	dup2(pipefd, STDIN_FILENO);
-	dup(STDOUT_FILENO);
-	dup2(outfile, STDOUT_FILENO);
-	if (execve(cmd2, ft_split(argv[3], ' '), envp) == -1)
-		perror("Exec call failed");
-	free_null(cmd2);
-	return (EXIT_FAILURE);
+	if (access(cmd, X_OK) == 0)
+		return (TRUE);
+	path = ft_get_path(envp);	
+	
+	free(path);
+	return (FALSE);
 }
 
-int	pipe_exec(char **argv, char **envp)
+int	ft_check_all_cmds(char **argv, char **envp)
 {
-	int		pipefd[2];
-	pid_t	pid;
+	size_t	i;
+	size_t	nb_of_commands;
 
-	if (pipe(pipefd) == -1)
-		perror_exit("Pipe failed", errno);
-	pid = fork();
-	if (pid == -1)
-		perror_exit("Fork failed", errno);
-	if (pid == 0)
-	{
-		close(pipefd[0]);
-		write_infile_to_pipe(pipefd[1], argv, envp);
-	}
-	else
-	{
-		wait(NULL);
-		close(pipefd[1]);
-		write_pipe_to_outfile(pipefd[0], argv, envp);
-	}
-	return (EXIT_SUCCESS);
+	nb_of_commands = ft_count_commands(argv);
+	i = 0;
+	while (i < nb_of_commands)
+		ft_check_if_cmd_is_executable(argv[i++], envp);
+	return (TRUE);
 }
 
-int	fork_proc(char **argv, char **envp)
+int main(int argc, char **argv, char **envp)
 {
-	pid_t	pid;
+	char	*infile;
+	char	*outfile;
 
-	pid = fork();
-	if (pid == -1)
-		perror_exit("Fork failed", errno);
-	if (pid == 0)
-		pipe_exec(argv, envp);
-	else
-		wait(NULL);
-	return (EXIT_SUCCESS);
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	if (!check_args(argc))
-		perror_exit(NULL, EINVAL);
-	if (!check_infile(argv[1]))
-		perror_exit("Infile doesn't exist", ENOENT);
-	if (!check_outfile(argv[4]))
-		perror_exit("Outfile doesn't have the right permissions", EACCES);
-	if (check_cmd(argv[2]) && check_cmd(argv[3]))
-		return (pipe_exec(argv, envp));
-	fork_proc(argv, envp);
+	if (argc != 5)
+		return (ft_perror_exit("invalid number of arguments", 1));
+	infile = argv[1];
+	outfile = argv[argc - 1];
+	if (!ft_check_valid_files(infile, outfile))
+		return (ft_perror_exit("invalid file", 2));
+	if (!ft_check_all_cmds(argv, envp))
+		return (ft_perror_exit("invalid command", 3));
+	//ft_fork_exec();	
+	exit(4);
 }
