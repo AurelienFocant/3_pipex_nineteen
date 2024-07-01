@@ -72,9 +72,11 @@ void	free_null(char *ptr)
 
 void	free_null_strv(char **ptr)
 {
-	while (*ptr)
-	{
-		free_null(*ptr);
-		ptr++;
-	}
+	size_t	i;
+
+	i = 0;
+	while (ptr[i])
+		free_null(ptr[i++]);
+	free(ptr);
+	ptr = NULL;
 }

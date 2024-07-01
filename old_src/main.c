@@ -17,7 +17,7 @@ int	write_infile_to_pipe(int pipefd, char **argv, char **envp)
 	{
 		path = get_path(envp);
 		cmd1 = prepend_path_cmd(path, argv[2]);
-		free_null(path);
+		free_null_strv(path);
 	}
 	if (!cmd1)
 		return (-1);
@@ -40,7 +40,7 @@ int	write_pipe_to_outfile(int pipefd, char **argv, char **envp)
 		perror_exit("Couldn't open infile", errno);
 	path = get_path(envp);
 	cmd2 = prepend_path_cmd(path, argv[3]);
-	free_null(path);
+	free_null_strv(path);
 	if (!cmd2)
 		return (-1);
 	dup(STDIN_FILENO);

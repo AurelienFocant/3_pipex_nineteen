@@ -8,11 +8,13 @@ void	ft_free_null(char *ptr)
 
 void	ft_free_null_strv(char **strv)
 {
-	while (*strv)
-	{
-		ft_free_null(*strv);
-		strv++;
-	}
+	size_t	i;
+
+	i = 0;
+	while (strv[i])
+		ft_free_null(strv[i++]);
+	free(strv);
+	strv = NULL;
 }
 
 int	ft_perror_exit(char *error, int errnb)
