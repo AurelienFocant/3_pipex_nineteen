@@ -7,6 +7,7 @@ int	write_infile_to_pipe(int pipefd, char **argv, char **envp)
 	char	**path;
 	int		infile;
 
+	//close other part of pipe !!
 	path = NULL;
 	infile = open(argv[1], O_RDONLY);
 	if (infile == -1)
