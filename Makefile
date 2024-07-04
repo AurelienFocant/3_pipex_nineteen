@@ -11,7 +11,6 @@ DFLAGS	=	-fsanitize=address -fsanitize=undefined
 NAME	=	pipex
 
 SRC_DIR	=	src
-aSRC_DIR	=	./old_src
 
 SRC	=	$(wildcard $(SRC_DIR)/*.c)
 
