@@ -1,17 +1,5 @@
 #include "pipex.h"
 
-size_t	ft_count_commands(char **argv)
-{
-	size_t	nb_of_files;
-	size_t	i;
-
-	nb_of_files = 2;
-	i = 0;
-	while (argv[i])
-		i++;
-	return (i - nb_of_files);
-}
-
 char	**ft_get_path(char **envp)
 {
 	char	**env;
@@ -65,14 +53,6 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 	}
 	ft_perror_exit("Can't find executable", ENOENT, 94);
 	return (NULL);
-}
-
-void	ft_initialize_data(t_data *data)
-{
-	data->files_fd[0] = -1;
-	data->files_fd[1] = -1;
-	data->exec = NULL;
-	data->cmd = NULL;
 }
 
 void	ft_extract_cmd(t_data *data, char *arg, char **envp)
