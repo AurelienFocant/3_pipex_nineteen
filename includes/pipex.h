@@ -34,21 +34,21 @@ typedef struct	s_context
 }				t_context;
 
 /*----------------  main.c  ---------------*/
-void	ft_write_infile_to_pipe(char *cmd, char *infile, char *pipewrite);
-void	ft_write_pipe_to_outfile(char *cmd, char *outfile, char *piperead);
+void	ft_execute_child(t_context *context);
 void	ft_pipex(t_context *context);
-int	main(int argc, char **argv, char **envp);
+int		main(int argc, char **argv, char **envp);
 
 /*----------------  path_and_cmd_extraction.c  ---------------*/
 char	**ft_get_path(char **envp);
 char	*ft_prepend_path_cmd(char **path, char *cmd);
-void	ft_extract_cmd(t_data *data, char *arg, char **envp);
+void	ft_find_executable(t_context *context);
 
 /*----------------  prepare_context.c  ---------------*/
 t_context	ft_initialise_context(int argc, char **argv, char **envp);
 int			ft_open_file(char *file, int mode);
-t_data		ft_prepare_io(t_context *context);
+void		ft_prepare_io(t_context *context);
 void		ft_prepare_pipe(t_context *context);
+void		ft_set_up_redirection(t_context *context);
 
 /*----------------  utils_check_files.c  ---------------*/
 int	ft_check_if_cmd_is_executable(char *arg);
@@ -57,7 +57,7 @@ int	ft_check_valid_files(char *infile, char *outfile);
 
 /*----------------  utils_cleanup.c  ---------------*/
 void	ft_wait_for_all_children(t_context *context);
-void	ft_close_pipes(t_context context);
+void	ft_close_pipes(t_context *context);
 
 /*----------------  utils_manage_errors.c  ---------------*/
 void	ft_free_null(char *ptr);

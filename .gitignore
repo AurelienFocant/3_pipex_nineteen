@@ -6,8 +6,7 @@ pipex
 *out*
 *.o
 
+infile
 outfile
-
-tags
 
 *libft/*

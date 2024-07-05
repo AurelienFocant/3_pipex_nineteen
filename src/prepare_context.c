@@ -1,3 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prepare_context.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/06 00:58:39 by afocant           #+#    #+#             */
+/*   Updated: 2024/07/06 00:58:49 by afocant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "pipex.h"
+
 t_context	ft_initialise_context(int argc, char **argv, char **envp)
 {
 	t_context	context;
@@ -39,31 +53,31 @@ int			ft_open_file(char *file, int mode)
 	return (fd);
 }
 
-t_context	ft_prepare_io(t_context *context)
+void		ft_prepare_io(t_context *context)
 {
 	char	*infile;
 	char	*outfile;
 	int		last_cmd;
 
 	infile = context->argv[1];
-	outfile = context->argv[argc - 1];
+	outfile = context->argv[context->argc - 1];
 	last_cmd = context->nb_of_cmds - 1;
 	if (context->curr_cmd_nb == 0)
 	{
 		close(context->pipes_fd[STDIN_FILENO]);
 		context->files_fd[STDIN_FILENO] = ft_open_file(infile, READ);
-		context->files_fd[STDOUT_FILENO] = context->pipe_fd[STDOUT_FILENO];
+		context->files_fd[STDOUT_FILENO] = context->pipes_fd[STDOUT_FILENO];
 	}
 	else if (context->curr_cmd_nb == last_cmd)
 	{
 		close(context->pipes_fd[STDOUT_FILENO]);
-		context->files_fd[STDIN_FILENO] = context->pipe_fd[STDIN_FILENO];
+		context->files_fd[STDIN_FILENO] = context->pipes_fd[STDIN_FILENO];
 		context->files_fd[STDOUT_FILENO] = ft_open_file(outfile, WRITE);
 	}
 	else
 	{
-		context->files_fd[STDIN_FILENO] = context->pipe_fd[STDIN_FILENO];
-		context->files_fd[STDOUT_FILENO] = context->pipe_fd[STDOUT_FILENO];
+		context->files_fd[STDIN_FILENO] = context->pipes_fd[STDIN_FILENO];
+		context->files_fd[STDOUT_FILENO] = context->pipes_fd[STDOUT_FILENO];
 	}
 }
 

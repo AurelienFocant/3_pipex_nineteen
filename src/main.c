@@ -1,41 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/06 00:56:17 by afocant           #+#    #+#             */
+/*   Updated: 2024/07/06 00:59:31 by afocant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
-void	ft_write_infile_to_pipe(char *cmd, char *infile, char *pipewrite)
-{
-	close(piperead) !!!!!
-	if (dup2(infile, STDIN_FILENO) == -1 || dup2(pipewrite, STDOUT_FILENO) == -1)
-		ft_perror_exit("Dup2 call failed", errno, 7);
-	execve(cmd[0], cmd, envp);
-	ft_free_null_strv(cmd);
-	ft_perror_exit("Exec call failed", errno, 8);
-}
 
-void	ft_write_pipe_to_outfile(char *cmd, char *outfile, char *piperead)
+void	ft_execute_child(t_context *context)
 {
-	close(pipewrite) !!!!!
-	if (dup2(piperead, STDIN_FILENO) == -1 || dup2(outfile, STDOUT_FILENO) == -1)
-		ft_perror_exit("Dup2 call failed", errno, 9);
-	execve(cmd[0], cmd, envp);
-	ft_free_null_strv(cmd);
-	ft_perror_exit("Exec call failed", errno, 8);
-}
-
-void	ft_find_executable(t_context context)
-{
+	char	*executable;
 	char	**cmd;
-	char	**executable;
-	int		curr_cmd_nb;
+	char	**envp;
 
-	path = ft_get_path(context->envp);
-	curr_cmd_nb = context->curr_cmd_nb;
-	context.cmd = ft_split(argv[curr_cmd_nb + 2], ' ');
-	cmd = ft_split(context->argv[curr_cmd_nb + 2], ' ');
-	executable = ft_prepend_path_cmd(path, cmd[0]);
-	
+	executable = context->executable;
+	cmd = context->cmd;
+	envp = context->envp;
+	execve(executable, cmd, envp);
+	ft_perror_exit("Execve has failed", errno, 753);
 }
 
 void	ft_pipex(t_context *context)
 {
-	int	curr_cmd_nb;
+	int		curr_cmd_nb;
+	pid_t	pid;
 
 	curr_cmd_nb = 0;
 	while (curr_cmd_nb < context->nb_of_cmds)
@@ -51,17 +44,15 @@ void	ft_pipex(t_context *context)
 			ft_find_executable(context);
 			ft_set_up_redirection(context);
 			ft_execute_child(context);
-		}	
+		}
 		ft_close_pipes(context);
 		curr_cmd_nb++;
 	}
-	ft_wait_for_all_children(nb_of_cmds);
+	ft_wait_for_all_children(context);
 }
 
 int		main(int argc, char **argv, char **envp)
 {
-	char		*infile;
-	char		*outfile;
 	t_context	context;
 
 	if (!ft_check_argc(argc))

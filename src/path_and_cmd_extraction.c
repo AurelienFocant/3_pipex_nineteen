@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   path_and_cmd_extraction.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/06 00:56:31 by afocant           #+#    #+#             */
+/*   Updated: 2024/07/06 00:56:32 by afocant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 char	**ft_get_path(char **envp)
@@ -55,20 +67,13 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 	return (NULL);
 }
 
-void	ft_extract_cmd(t_data *data, char *arg, char **envp)
+void	ft_find_executable(t_context *context)
 {
 	char	**path;
+	int		curr_cmd_nb;
 
-	data->cmd = ft_split(arg, ' ');
-	if (!data->cmd)
-		ft_perror_exit("Error splitting command", ENOENT, 17);
-	if (ft_check_if_cmd_is_executable(data->cmd[0]))
-	{
-		data->exec = data->cmd[0];
-		return ;
-	}
-	path = ft_get_path(envp);
-	if (!path)
-		ft_perror_exit("Couldn't find path", ENOENT, 18);
-	ft_free_null_strv(path);	
+	path = context->path;
+	curr_cmd_nb = context->curr_cmd_nb;
+	context->cmd = ft_split(context->argv[curr_cmd_nb + 2], ' ');
+	context->executable = ft_prepend_path_cmd(path, context->cmd[0]);
 }
