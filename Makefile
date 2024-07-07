@@ -1,3 +1,4 @@
+#---------------------------------------------------------#
 CC	=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror 
@@ -5,9 +6,7 @@ CFLAGS	=	-Wall -Wextra -Werror
 GFLAGS	=	-g
 
 DFLAGS	=	-fsanitize=address -fsanitize=undefined
-
-###########################################################
-
+#---------------------------------------------------------#
 NAME	=	pipex
 
 SRC_DIR	=	src
@@ -24,16 +23,13 @@ LIB_DIR	=	./libft
 LIB	=	$(LIB_DIR)/libft.a
 
 .PHONY: all lib clean fclean libclean re
-
-###########################################################
-
+#---------------------------------------------------------#
 all:		$(NAME)
 
 lib:		$(LIB)
 
 $(NAME):	$(OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(OBJ) -o $@ -L$(LIB_DIR) -lft
-
 
 $(LIB):
 	$(MAKE) -C $(LIB_DIR)
@@ -43,7 +39,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 
 $(OBJ_DIR):
 	mkdir -p obj
-
+#---------------------------------------------------------#
 clean:
 	rm -rf $(OBJ_DIR)
 
@@ -55,3 +51,6 @@ libclean:
 	rm -rf $(LIB)
 
 re: fclean all
+
+libre: libclean lib
+#---------------------------------------------------------#
