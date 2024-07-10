@@ -30,10 +30,10 @@ void	ft_pipex(t_context *context)
 	int		curr_cmd_nb;
 	pid_t	pid;
 
+	ft_prepare_pipe(context);
 	curr_cmd_nb = 0;
 	while (curr_cmd_nb < context->nb_of_cmds)
 	{
-		ft_prepare_pipe(context);
 		pid = fork();
 		if (pid == -1)
 			ft_perror_exit("Fork failed", errno, 741);
@@ -45,9 +45,9 @@ void	ft_pipex(t_context *context)
 			ft_set_up_redirection(context);
 			ft_execute_child(context);
 		}
-		ft_close_pipes(context);
 		curr_cmd_nb++;
 	}
+	ft_close_pipes(context);
 	ft_wait_for_all_children(context);
 }
 

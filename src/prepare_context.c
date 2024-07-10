@@ -70,9 +70,9 @@ void		ft_prepare_io(t_context *context)
 	}
 	else if (context->curr_cmd_nb == last_cmd)
 	{
-		close(context->pipes_fd[STDOUT_FILENO]);
-		context->files_fd[STDIN_FILENO] = context->pipes_fd[STDIN_FILENO];
 		context->files_fd[STDOUT_FILENO] = ft_open_file(outfile, WRITE);
+		context->files_fd[STDIN_FILENO] = context->pipes_fd[STDIN_FILENO];
+		close(context->pipes_fd[STDOUT_FILENO]);
 	}
 	else
 	{
