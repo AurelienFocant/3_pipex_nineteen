@@ -44,6 +44,8 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 	size_t	i;
 	size_t	j;
 
+	if (cmd == NULL)
+		ft_perror_exit("Can't find executable", ENOENT, 94);
 	while (*path)
 	{
 		res = malloc(sizeof(char) * (ft_strlen(*path) + ft_strlen(cmd) + 2));
