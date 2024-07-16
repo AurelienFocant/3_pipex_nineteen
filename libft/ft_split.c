@@ -90,6 +90,8 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	strs_count = ft_count_strs(s, c);
+	if (!strs_count)
+		return (NULL);
 	split_s = malloc((strs_count + 1) * sizeof(char *));
 	if (!split_s)
 		return (NULL);
