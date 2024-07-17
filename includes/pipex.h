@@ -30,7 +30,7 @@ typedef struct	s_context
 	char	**cmd;
 	char	*executable;
 	int		files_fd[2];
-	int		pipes_fd[2];
+	int		*pipes_fd;
 }				t_context;
 
 /*----------------  main.c  ---------------*/

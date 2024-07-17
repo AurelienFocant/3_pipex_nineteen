@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:59:13 by afocant           #+#    #+#             */
-/*   Updated: 2024/07/06 00:59:14 by afocant          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:07:20 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ void	ft_wait_for_all_children(t_context *context)
 
 void	ft_close_pipes(t_context *context)
 {
-	close(context->pipes_fd[0]);
-	close(context->pipes_fd[1]);
+	unsigned int	nb_of_pipes;
+	unsigned int	n;
+
+	nb_of_pipes = context->argc - 4;
+	n = 0;
+	while (n < (nb_of_pipes * 2))
+	{
+		close(context->pipes_fd[n]);
+		free(pipes_fd[n];
+		n++;
+	}
 }

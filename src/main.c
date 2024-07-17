@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:56:17 by afocant           #+#    #+#             */
-/*   Updated: 2024/07/06 00:59:31 by afocant          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:08:52 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	ft_pipex(t_context *context)
 		}
 		curr_cmd_nb++;
 	}
-	ft_close_pipes(context);
 	ft_wait_for_all_children(context);
+	ft_close_pipes(context);
 }
 
 int		main(int argc, char **argv, char **envp)

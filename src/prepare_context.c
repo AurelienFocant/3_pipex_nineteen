@@ -6,30 +6,11 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:58:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/07/06 00:58:49 by afocant          ###   ########.fr       */
+/*   Updated: 2024/07/17 17:02:58 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-t_context	ft_initialise_context(int argc, char **argv, char **envp)
-{
-	t_context	context;
-
-	context.argc = argc;
-	context.argv = argv;
-	context.envp = envp;
-	context.nb_of_cmds = argc - 3;
-	context.curr_cmd_nb = -1;
-	context.path = ft_get_path(envp);
-	context.cmd = NULL;
-	context.executable = NULL;
-	context.files_fd[0] = -1;
-	context.files_fd[1] = -1;
-	context.pipes_fd[0] = -1;
-	context.pipes_fd[1] = -1;
-	return (context);
-}
 
 int			ft_open_file(char *file, int mode)
 {
@@ -81,16 +62,47 @@ void		ft_prepare_io(t_context *context)
 	}
 }
 
-void		ft_prepare_pipe(t_context *context)
-{
-	if (pipe(context->pipes_fd) == -1)
-		ft_perror_exit("Pipe failed", errno, 454);
-}
-
 void		ft_set_up_redirection(t_context *context)
 {
 	if (dup2(context->files_fd[STDIN_FILENO], STDIN_FILENO) == -1)
 		ft_perror_exit("Dup2 call on input has failed", errno, 524);
 	if (dup2(context->files_fd[STDOUT_FILENO], STDOUT_FILENO) == -1)
 		ft_perror_exit("Dup2 call on output has failed", errno, 525);
+}
+
+t_context	ft_initialise_context(int argc, char **argv, char **envp)
+{
+	t_context	context;
+
+	context.argc = argc;
+	context.argv = argv;
+	context.envp = envp;
+	context.nb_of_cmds = argc - 3;
+	context.curr_cmd_nb = -1;
+	context.path = ft_get_path(envp);
+	context.cmd = NULL;
+	context.executable = NULL;
+	context.files_fd[0] = -1;
+	context.files_fd[1] = -1;
+	context.pipes_fd = NULL;
+	return (context);
+}
+
+void		ft_prepare_pipe(t_context *context)
+{
+	unsigned int	nb_of_pipes;
+	unsigned int	n;
+
+	nb_of_pipes = context->argc - 1 - 2 - 1;
+	context->pipes_fd = malloc(sizeof(int) * (nb_of_pipes * 2));
+	if (context->pipes_fd == NULL)
+			ft_perror_exit("Pipe failed", errno, 453);
+	n = 0;
+	while (n < nb_of_pipes)
+	{
+		if (pipe(context->pipes_fd) == -1)
+			ft_perror_exit("Pipe failed", errno, 454);
+		context->pipes_fd += 2;
+		n++;
+	}
 }
