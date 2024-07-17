@@ -34,7 +34,7 @@ void	ft_close_pipes(t_context *context)
 	while (n < (nb_of_pipes * 2))
 	{
 		close(context->pipes_fd[n]);
-		free(pipes_fd[n];
+		free(context->pipes_fd + n);
 		n++;
 	}
 }

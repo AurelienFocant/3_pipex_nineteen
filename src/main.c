@@ -22,6 +22,7 @@ void	ft_execute_child(t_context *context)
 	cmd = context->cmd;
 	envp = context->envp;
 	execve(executable, cmd, envp);
+	// should free all the bloody malloc !
 	ft_perror_exit("Execve has failed", errno, 753);
 }
 
@@ -43,6 +44,7 @@ void	ft_pipex(t_context *context)
 			ft_prepare_io(context);
 			ft_find_executable(context);
 			ft_set_up_redirection(context);
+			//ft_close_pipes;
 			ft_execute_child(context);
 		}
 		curr_cmd_nb++;

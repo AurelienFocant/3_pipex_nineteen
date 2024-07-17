@@ -39,26 +39,29 @@ void		ft_prepare_io(t_context *context)
 	char	*infile;
 	char	*outfile;
 	int		last_cmd;
+	int		pipe_in;
+	int		pipe_out;
 
 	infile = context->argv[1];
 	outfile = context->argv[context->argc - 1];
 	last_cmd = context->nb_of_cmds - 1;
+	pipe_in = (context->curr_cmd_nb * 2 - 2);
+	pipe_out = (context->curr_cmd_nb * 2 + 1);
+
 	if (context->curr_cmd_nb == 0)
 	{
-		close(context->pipes_fd[STDIN_FILENO]);
 		context->files_fd[STDIN_FILENO] = ft_open_file(infile, READ);
-		context->files_fd[STDOUT_FILENO] = context->pipes_fd[STDOUT_FILENO];
+		context->files_fd[STDOUT_FILENO] = context->pipes_fd[pipe_out];
 	}
 	else if (context->curr_cmd_nb == last_cmd)
 	{
 		context->files_fd[STDOUT_FILENO] = ft_open_file(outfile, WRITE);
-		context->files_fd[STDIN_FILENO] = context->pipes_fd[STDIN_FILENO];
-		close(context->pipes_fd[STDOUT_FILENO]);
+		context->files_fd[STDIN_FILENO] = context->pipes_fd[pipe_in];
 	}
 	else
 	{
-		context->files_fd[STDIN_FILENO] = context->pipes_fd[STDIN_FILENO];
-		context->files_fd[STDOUT_FILENO] = context->pipes_fd[STDOUT_FILENO];
+		context->files_fd[STDIN_FILENO] = context->pipes_fd[pipe_in];
+		context->files_fd[STDOUT_FILENO] = context->pipes_fd[pipe_out];
 	}
 }
 
@@ -68,24 +71,6 @@ void		ft_set_up_redirection(t_context *context)
 		ft_perror_exit("Dup2 call on input has failed", errno, 524);
 	if (dup2(context->files_fd[STDOUT_FILENO], STDOUT_FILENO) == -1)
 		ft_perror_exit("Dup2 call on output has failed", errno, 525);
-}
-
-t_context	ft_initialise_context(int argc, char **argv, char **envp)
-{
-	t_context	context;
-
-	context.argc = argc;
-	context.argv = argv;
-	context.envp = envp;
-	context.nb_of_cmds = argc - 3;
-	context.curr_cmd_nb = -1;
-	context.path = ft_get_path(envp);
-	context.cmd = NULL;
-	context.executable = NULL;
-	context.files_fd[0] = -1;
-	context.files_fd[1] = -1;
-	context.pipes_fd = NULL;
-	return (context);
 }
 
 void		ft_prepare_pipe(t_context *context)
@@ -105,4 +90,22 @@ void		ft_prepare_pipe(t_context *context)
 		context->pipes_fd += 2;
 		n++;
 	}
+}
+
+t_context	ft_initialise_context(int argc, char **argv, char **envp)
+{
+	t_context	context;
+
+	context.argc = argc;
+	context.argv = argv;
+	context.envp = envp;
+	context.nb_of_cmds = argc - 3;
+	context.curr_cmd_nb = -1;
+	context.path = ft_get_path(envp);
+	context.cmd = NULL;
+	context.executable = NULL;
+	context.files_fd[0] = -1;
+	context.files_fd[1] = -1;
+	context.pipes_fd = NULL;
+	return (context);
 }

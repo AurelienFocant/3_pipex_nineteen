@@ -72,6 +72,7 @@ void	ft_find_executable(t_context *context)
 	char	**path;
 	int		curr_cmd_nb;
 
+	//don t forget to check if /bin/ls was input
 	path = context->path;
 	curr_cmd_nb = context->curr_cmd_nb;
 	context->cmd = ft_split(context->argv[curr_cmd_nb + 2], ' ');

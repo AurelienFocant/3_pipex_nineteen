@@ -5,7 +5,7 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 GFLAGS	=	-g
 
-DFLAGS	=	-fsanitize=address -fsanitize=undefined
+DaFLAGS	=	-fsanitize=address -fsanitize=undefined
 #---------------------------------------------------------#
 NAME	=	pipex
 
