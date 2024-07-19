@@ -1,11 +1,11 @@
 #---------------------------------------------------------#
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror 
+CFLAGS	=	-Wall -Wextra -Werror
 
 GFLAGS	=	-g
 
-DaFLAGS	=	-fsanitize=address -fsanitize=undefined
+DFLAGS	=	-fsanitize=address -fsanitize=undefined
 #---------------------------------------------------------#
 SRC_DIR	=	src
 
