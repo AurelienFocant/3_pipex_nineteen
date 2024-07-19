@@ -1,5 +1,5 @@
 #---------------------------------------------------------#
-CC	=	cc
+CC		=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror 
 
@@ -9,17 +9,17 @@ DaFLAGS	=	-fsanitize=address -fsanitize=undefined
 #---------------------------------------------------------#
 SRC_DIR	=	src
 
-SRC	=	$(wildcard $(SRC_DIR)/*.c)
+SRC		=	$(wildcard $(SRC_DIR)/*.c)
 
 OBJ_DIR	=	obj
 
-OBJ	=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJ		=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 INC_DIR	=	includes
 
 LIB_DIR	=	libft
 
-LIB	=	$(LIB_DIR)/libft.a
+LIB		=	$(LIB_DIR)/libft.a
 
 .PHONY: all lib clean fclean libclean re
 #---------------------------------------------------------#
