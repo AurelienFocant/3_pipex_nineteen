@@ -7,8 +7,6 @@ GFLAGS	=	-g
 
 DaFLAGS	=	-fsanitize=address -fsanitize=undefined
 #---------------------------------------------------------#
-NAME	=	pipex
-
 SRC_DIR	=	src
 
 SRC	=	$(wildcard $(SRC_DIR)/*.c)
@@ -16,7 +14,8 @@ SRC	=	$(wildcard $(SRC_DIR)/*.c)
 OBJ_DIR	=	obj
 
 OBJ	=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-#OBJ	=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+
+INC_DIR	=	includes
 
 LIB_DIR	=	libft
 
@@ -24,6 +23,8 @@ LIB	=	$(LIB_DIR)/libft.a
 
 .PHONY: all lib clean fclean libclean re
 #---------------------------------------------------------#
+NAME	=	pipex
+
 all:		$(NAME)
 
 lib:		$(LIB)
@@ -35,7 +36,7 @@ $(LIB):
 	$(MAKE) -C $(LIB_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -Iincludes -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -I$(INC_DIR) -I$(LIB_DIR)/$(INC_DIR) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p obj
