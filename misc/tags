@@ -1,19 +1,46 @@
+LIBFT_H	../includes/libft.h	/^#define LIBFT_H$/
+t_list	../includes/libft.h	/^}					t_list;$/
+CHILD	../includes/pipex.h	/^#define CHILD	0$/
+FALSE	../includes/pipex.h	/^#define FALSE	0$/
+PIPEX_H	../includes/pipex.h	/^#define PIPEX_H$/
+READ	../includes/pipex.h	/^#define READ	0$/
+TRUE	../includes/pipex.h	/^#define TRUE	1$/
+WRITE	../includes/pipex.h	/^#define WRITE	1$/
+t_context	../includes/pipex.h	/^}				t_context;$/
+free_null	../misc/old_src/general_utils.c	/^void	free_null(char *ptr)$/
+free_null_strv	../misc/old_src/general_utils.c	/^void	free_null_strv(char **ptr)$/
+get_path	../misc/old_src/general_utils.c	/^char	**get_path(char **envp)$/
+prepend_path_cmd	../misc/old_src/general_utils.c	/^char	*prepend_path_cmd(char **path, char *cmd)$/
+print_strv	../misc/old_src/general_utils.c	/^void	print_strv(char **strv)$/
+Mmain	../misc/old_src/main.c	/^int	main(int argc, char **argv, char **envp)$/
+fork_proc	../misc/old_src/main.c	/^int	fork_proc(char **argv, char **envp)$/
+pipe_exec	../misc/old_src/main.c	/^int	pipe_exec(char **argv, char **envp)$/
+write_infile_to_pipe	../misc/old_src/main.c	/^int	write_infile_to_pipe(int pipefd, char **argv, /
+write_pipe_to_outfile	../misc/old_src/main.c	/^int	write_pipe_to_outfile(int pipefd, char **argv,/
+check_args	../misc/old_src/utils_errors.c	/^int	check_args(int argc)$/
+check_cmd	../misc/old_src/utils_errors.c	/^int	check_cmd(char *cmd)$/
+check_infile	../misc/old_src/utils_errors.c	/^int	check_infile(char *infile)$/
+check_outfile	../misc/old_src/utils_errors.c	/^int	check_outfile(char *outfile)$/
+perror_exit	../misc/old_src/utils_errors.c	/^int	perror_exit(char *error, int errnb)$/
+Mpipe	../misc/zzz_source_code/pipe.c	/^main(int argc, char **argv)$/
+rundest	../misc/zzz_source_code/pipe.c	/^rundest(int pfd[])	\/* run the second part of the /
+runsource	../misc/zzz_source_code/pipe.c	/^runsource(int pfd[])	\/* run the first part of the/
 Mmain	../src/main.c	/^int		main(int argc, char **argv, char **envp)$/
+ft_execute_child	../src/main.c	/^void	ft_execute_child(t_context *context)$/
+ft_pipex	../src/main.c	/^void	ft_pipex(t_context *context)$/
+ft_find_executable	../src/path_and_cmd_extraction.c	/^void	ft_find_executable(t_context *context)$/
+ft_get_path	../src/path_and_cmd_extraction.c	/^char	**ft_get_path(char **envp)$/
+ft_prepend_path_cmd	../src/path_and_cmd_extraction.c	/^char	*ft_prepend_path_cmd(char **path, char *cmd)$/
+ft_initialise_context	../src/prepare_context.c	/^t_context	ft_initialise_context(int argc, char **a/
+ft_open_file	../src/prepare_context.c	/^int			ft_open_file(char *file, int mode)$/
+ft_prepare_io	../src/prepare_context.c	/^void		ft_prepare_io(t_context *context)$/
+ft_prepare_pipe	../src/prepare_context.c	/^void		ft_prepare_pipe(t_context *context)$/
+ft_set_up_redirection	../src/prepare_context.c	/^void		ft_set_up_redirection(t_context *context)$/
 ft_check_argc	../src/utils_check_files.c	/^int	ft_check_argc(int argc)$/
 ft_check_if_cmd_is_executable	../src/utils_check_files.c	/^int	ft_check_if_cmd_is_executable(char *arg)$/
 ft_check_valid_files	../src/utils_check_files.c	/^int	ft_check_valid_files(char *infile, char *outfi/
 ft_close_pipes	../src/utils_cleanup.c	/^void	ft_close_pipes(t_context *context)$/
-ft_execute_child	../src/main.c	/^void	ft_execute_child(t_context *context)$/
-ft_find_executable	../src/path_and_cmd_extraction.c	/^void	ft_find_executable(t_context *context)$/
+ft_wait_for_all_children	../src/utils_cleanup.c	/^void	ft_wait_for_all_children(t_context *context)$/
 ft_free_null	../src/utils_manage_errors.c	/^void	ft_free_null(char *ptr)$/
 ft_free_null_strv	../src/utils_manage_errors.c	/^void	ft_free_null_strv(char **strv)$/
-ft_get_path	../src/path_and_cmd_extraction.c	/^char	**ft_get_path(char **envp)$/
-ft_initialise_context	../src/prepare_context.c	/^t_context	ft_initialise_context(int argc, char **a/
-ft_open_file	../src/prepare_context.c	/^int			ft_open_file(char *file, int mode)$/
 ft_perror_exit	../src/utils_manage_errors.c	/^int		ft_perror_exit(char *error, int my_errno, int/
-ft_pipex	../src/main.c	/^void	ft_pipex(t_context *context)$/
-ft_prepare_io	../src/prepare_context.c	/^void		ft_prepare_io(t_context *context)$/
-ft_prepare_pipe	../src/prepare_context.c	/^void		ft_prepare_pipe(t_context *context)$/
-ft_prepend_path_cmd	../src/path_and_cmd_extraction.c	/^char	*ft_prepend_path_cmd(char **path, char *cmd)$/
-ft_set_up_redirection	../src/prepare_context.c	/^void		ft_set_up_redirection(t_context *context)$/
-ft_wait_for_all_children	../src/utils_cleanup.c	/^void	ft_wait_for_all_children(t_context *context)$/
