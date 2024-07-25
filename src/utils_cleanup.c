@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:59:13 by afocant           #+#    #+#             */
-/*   Updated: 2024/07/17 17:07:20 by afocant          ###   ########.fr       */
+/*   Updated: 2024/07/25 16:18:09 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_close_pipes(t_context *context)
 	while (n < (nb_of_pipes * 2))
 	{
 		close(context->pipes_fd[n]);
-		free(context->pipes_fd + n);
 		n++;
 	}
+	free(context->pipes_fd);
 }

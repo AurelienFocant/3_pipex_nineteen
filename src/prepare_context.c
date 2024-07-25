@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:58:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/07/17 17:02:58 by afocant          ###   ########.fr       */
+/*   Updated: 2024/07/25 17:02:10 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,11 @@ void		ft_prepare_pipe(t_context *context)
 	if (context->pipes_fd == NULL)
 			ft_perror_exit("Pipe failed", errno, 453);
 	n = 0;
-	while (n < nb_of_pipes)
+	while (n < nb_of_pipes * 2)
 	{
-		if (pipe(context->pipes_fd) == -1)
+		if (pipe(context->pipes_fd + n) == -1)
 			ft_perror_exit("Pipe failed", errno, 454);
-		context->pipes_fd += 2;
-		n++;
+		n += 2;
 	}
 }
 

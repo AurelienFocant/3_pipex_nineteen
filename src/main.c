@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:56:17 by afocant           #+#    #+#             */
-/*   Updated: 2024/07/17 17:08:52 by afocant          ###   ########.fr       */
+/*   Updated: 2024/07/25 17:10:32 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,6 @@ int		main(int argc, char **argv, char **envp)
 
 	if (!ft_check_argc(argc))
 		ft_perror_exit("Invalid number of arguments", EINVAL, 1);
-	/*
-	infile = argv[1];
-	outfile = argv[argc - 1];
-	if (!ft_check_valid_files(infile, outfile))
-		ft_perror_exit("Invalid file", errno, 2);
-	*/
 	context = ft_initialise_context(argc, argv, envp);
 	ft_pipex(&context);
 	exit(0);
