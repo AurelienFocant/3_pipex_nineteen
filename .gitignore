@@ -3,10 +3,10 @@
 *.swp
 
 pipex
-*out*
-*.o
+obj/*
 
 infile
 outfile
+misc/outfile
 
-*libft/*
+misc/tags
