@@ -44,13 +44,13 @@ void	ft_pipex(t_context *context)
 			ft_prepare_io(context);
 			ft_find_executable(context);
 			ft_set_up_redirection(context);
-			//ft_close_pipes;
+			ft_close_pipes(context);
 			ft_execute_child(context);
 		}
 		curr_cmd_nb++;
 	}
-	ft_wait_for_all_children(context);
 	ft_close_pipes(context);
+	ft_wait_for_all_children(context);
 }
 
 int		main(int argc, char **argv, char **envp)
