@@ -39,19 +39,23 @@ NAME	=	pipex
 
 all:		$(NAME)
 
-lib:		$(LIB)
+lib:		$(LIBFT_DIR)/$(LIBFT)
 
-$(NAME):	$(OBJ) $(LIB)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(OBJ) -o $@ -L$(LIB_DIR) -lft
+$(NAME):	$(OBJ) $(LIBFT_DIR)/$(LIBFT)
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(OBJ) -o $@ -L$(LIBFT_DIR) -l$(FT)
 
-$(LIB):
-	$(MAKE) -C $(LIB_DIR)
+$(LIBFT_DIR)/$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -I$(INC_DIR) -I$(LIB_DIR)/$(INC_DIR) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_SUBDIRS) $(OBJ_DIR)
+	@echo $(OBJ_SUBDIRS)
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR) -c $< -o $@ 
 
 $(OBJ_DIR):
-	mkdir -p obj
+	mkdir -p $@
+
+$(OBJ_SUBDIRS):
+	mkdir -p $@
 #---------------------------------------------------------#
 clean:
 	rm -rf $(OBJ_DIR)
@@ -60,8 +64,8 @@ fclean:		clean
 	rm -rf $(NAME) *dSYM 
 
 libclean:
-	rm -rf $(LIB_DIR)/$(OBJ_DIR)
-	rm -rf $(LIB)
+	rm -rf $(LIBFT_DIR)/$(OBJ_DIR)
+	rm -rf $(LIBFT_DIR)/$(LIBFT)
 
 re: fclean all
 
