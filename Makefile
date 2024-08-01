@@ -7,19 +7,31 @@ GFLAGS	=	-g
 
 DFLAGS	=	-fsanitize=address -fsanitize=undefined
 #---------------------------------------------------------#
-SRC_DIR	=	src
+SRC_DIR		=	src
 
-SRC		=	$(wildcard $(SRC_DIR)/*.c)
+SRC_SUBDIRS	=	$(shell find $(SRC_DIR)/* -type d)
 
-OBJ_DIR	=	obj
+SRC			=	$(shell find $(SRC_DIR) -type f -name "*.c")
 
-OBJ		=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJ_DIR		=	obj
 
-INC_DIR	=	includes
+OBJ_SUBDIRS	=	$(SRC_SUBDIRS:$(SRC_DIR)%=$(OBJ_DIR)%)
 
-LIB_DIR	=	libft
+OBJ			=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+#---------------------------------------------------------#
+INC_DIR		=	includes
 
-LIB		=	$(LIB_DIR)/libft.a
+LIBFT_DIR	=	libft
+
+CPU		=	$(shell uname -p)
+ifeq ($(CPU),arm)
+	LIBFT	=	libft_arm.a
+	FT		=	ft_arm
+else
+	LIBFT	=	libft_x86.a
+	FT		=	ft_x86
+endif
+
 
 .PHONY: all lib clean fclean libclean re
 #---------------------------------------------------------#
