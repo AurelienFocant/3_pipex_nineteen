@@ -14,14 +14,7 @@
 
 void	ft_execute_child(t_context *context)
 {
-	char	*executable;
-	char	**cmd;
-	char	**envp;
-
-	executable = context->executable;
-	cmd = context->cmd;
-	envp = context->envp;
-	execve(executable, cmd, envp);
+	execve(context->executable, context->cmd, context->envp);
 	// should free all the bloody malloc !
 	ft_perror_exit("Execve has failed", errno, 753);
 }
@@ -41,8 +34,8 @@ void	ft_pipex(t_context *context)
 		if (pid == CHILD)
 		{
 			context->curr_cmd_nb = curr_cmd_nb;
-			ft_prepare_io(context);
 			ft_find_executable(context);
+			ft_prepare_io(context);
 			ft_set_up_redirection(context);
 			ft_close_pipes(context);
 			ft_execute_child(context);

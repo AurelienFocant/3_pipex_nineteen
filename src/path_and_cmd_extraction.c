@@ -28,8 +28,11 @@ char	**ft_get_path(char **envp)
 		{
 			path = (ft_split(env[1], ':'));
 			ft_free_null_strv(env);
+			/*
 			if (!path)
 				ft_perror_exit("No valid $PATH was provided", ENOENT, 5);
+			// Should not exit !! Could be no envp but directly given an executable
+			*/
 			return (path);
 		}
 		ft_free_null_strv(env);
@@ -69,14 +72,13 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 
 void	ft_find_executable(t_context *context)
 {
-	char	**path;
 	int		curr_cmd_nb;
 
 	//don t forget to check if /bin/ls was input
-	path = context->path;
 	curr_cmd_nb = context->curr_cmd_nb;
+	// this split should be changed for awk and sed
 	context->cmd = ft_split(context->argv[curr_cmd_nb + 2], ' ');
 	if (context->cmd == NULL)
 		ft_perror_exit("Can't find executable", ENOENT, 94);
-	context->executable = ft_prepend_path_cmd(path, context->cmd[0]);
+	context->executable = ft_prepend_path_cmd(context->path, context->cmd[0]);
 }
