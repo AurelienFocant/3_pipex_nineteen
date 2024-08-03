@@ -70,6 +70,11 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 	return (NULL);
 }
 
+char	**ft_get_cmd(char *cmd)
+{
+	return (NULL);
+}
+
 void	ft_find_executable(t_context *context)
 {
 	int		curr_cmd_nb;
@@ -77,7 +82,8 @@ void	ft_find_executable(t_context *context)
 	//don t forget to check if /bin/ls was input
 	curr_cmd_nb = context->curr_cmd_nb;
 	// this split should be changed for awk and sed
-	context->cmd = ft_split(context->argv[curr_cmd_nb + 2], ' ');
+	//context->cmd = ft_split(context->argv[curr_cmd_nb + 2], ' ');
+	context->cmd = ft_get_cmd(context->argv[curr_cmd_nb + 2]);
 	if (context->cmd == NULL)
 		ft_perror_exit("Can't find executable", ENOENT, 94);
 	context->executable = ft_prepend_path_cmd(context->path, context->cmd[0]);
