@@ -34,9 +34,9 @@ void	ft_pipex(t_context *context)
 		if (pid == CHILD)
 		{
 			context->curr_cmd_nb = curr_cmd_nb;
-			ft_find_executable(context);
-			ft_prepare_io(context);
+			ft_prepare_io(context); /* before executable search !! */
 			ft_set_up_redirection(context);
+			ft_find_executable(context);
 			ft_close_pipes(context);
 			ft_execute_child(context);
 		}
@@ -46,6 +46,16 @@ void	ft_pipex(t_context *context)
 	ft_wait_for_all_children(context);
 }
 
+int		ft_check_heredoc(int argc, char **argv)
+{
+	if (argc < 6) /* ?? */
+		return (0);
+	if (ft_strncmp(argv[1], "HEREDOC", ft_strlen("HEREDOC") + 1) == 0)
+		return (1);
+	else
+		return (0);
+}
+
 int		main(int argc, char **argv, char **envp)
 {
 	t_context	context;
@@ -53,6 +63,7 @@ int		main(int argc, char **argv, char **envp)
 	if (!ft_check_argc(argc))
 		ft_perror_exit("Invalid number of arguments", EINVAL, 1);
 	context = ft_initialise_context(argc, argv, envp);
+	context.heredoc = ft_check_heredoc(argc, argv);
 	ft_pipex(&context);
 	exit(0);
 }

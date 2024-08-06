@@ -31,6 +31,7 @@ typedef struct	s_context
 	char	*executable;
 	int		files_fd[2];
 	int		*pipes_fd;
+	unsigned int	heredoc;
 }				t_context;
 
 /*----------------  main.c  ---------------*/

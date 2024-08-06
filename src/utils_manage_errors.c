@@ -31,6 +31,10 @@ void	ft_free_null_strv(char **strv)
 
 int		ft_perror_exit(char *error, int my_errno, int errnb)
 {
+	/*	should free stuff
+	*	and close pipes !
+	*	here or ft_finish_early, smth like this
+	*/ 
 	if (!errno)
 		errno = my_errno;
 	perror(error);

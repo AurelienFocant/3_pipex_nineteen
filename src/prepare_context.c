@@ -50,8 +50,16 @@ void		ft_prepare_io(t_context *context)
 
 	if (context->curr_cmd_nb == 0)
 	{
-		context->files_fd[STDIN_FILENO] = ft_open_file(infile, READ);
-		context->files_fd[STDOUT_FILENO] = context->pipes_fd[pipe_out];
+		if (context->heredoc)
+		{
+			// ft_setup_heredoc(context);
+			return ;
+		}
+		else
+		{
+			context->files_fd[STDIN_FILENO] = ft_open_file(infile, READ);
+			context->files_fd[STDOUT_FILENO] = context->pipes_fd[pipe_out];
+		}
 	}
 	else if (context->curr_cmd_nb == last_cmd)
 	{
@@ -81,7 +89,7 @@ void		ft_prepare_pipe(t_context *context)
 	nb_of_pipes = context->argc - 1 - 2 - 1;
 	context->pipes_fd = malloc(sizeof(int) * (nb_of_pipes * 2));
 	if (context->pipes_fd == NULL)
-			ft_perror_exit("Pipe failed", errno, 453);
+		ft_perror_exit("Pipe failed", errno, 453);
 	n = 0;
 	while (n < nb_of_pipes * 2)
 	{
@@ -106,5 +114,6 @@ t_context	ft_initialise_context(int argc, char **argv, char **envp)
 	context.files_fd[0] = -1;
 	context.files_fd[1] = -1;
 	context.pipes_fd = NULL;
+	context.heredoc = 0;
 	return (context);
 }
