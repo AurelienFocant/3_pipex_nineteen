@@ -36,14 +36,16 @@ void	ft_pipex(t_context *context)
 			context->curr_cmd_nb = curr_cmd_nb;
 			ft_prepare_io(context); /* before executable search !! */
 			ft_set_up_redirection(context);
-			ft_find_executable(context);
 			ft_close_pipes(context);
+			ft_find_executable(context);
 			ft_execute_child(context);
 		}
 		curr_cmd_nb++;
 	}
 	ft_close_pipes(context);
 	ft_wait_for_all_children(context);
+	if (context->heredoc)
+		unlink(".heredoc.tmp");
 }
 
 int		ft_check_heredoc(int argc, char **argv)
