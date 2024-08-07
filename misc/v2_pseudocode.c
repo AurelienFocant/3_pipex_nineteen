@@ -19,7 +19,7 @@ __main
 			---- CHILD process
 				//has to be before executable finding because outfile is always created
 				- setup redirection 
-					-- prepare io
+-- prepare io
 					-- dup2 io
 				- find executable
 					-- if argv is X_OK, good
@@ -32,3 +32,17 @@ __main
 			---- PARENT process
 				- close all pipes
 				- wait for all children
+
+
+feature-heredoc:
+	chec argc >=5  now
+	-- if argc >= 6 &&
+	-- if argv[1] == strcmp here_doc
+
+	nb_of_commands = argc - 4, not -3
+	every curr_cmd_nb += 1
+
+	first child open here_doc tmp file
+	ft_putstr_fd to it using ft_gnl on stdin
+
+	parent should unlink the tmp file ??

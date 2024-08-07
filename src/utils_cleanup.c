@@ -29,7 +29,7 @@ void	ft_close_pipes(t_context *context)
 	unsigned int	nb_of_pipes;
 	unsigned int	n;
 
-	nb_of_pipes = context->argc - 4;
+	nb_of_pipes = context->argc - 4 - context->heredoc;
 	n = 0;
 	while (n < (nb_of_pipes * 2))
 	{
