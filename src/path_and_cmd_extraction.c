@@ -71,22 +71,6 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 	return (NULL);
 }
 
-int		ft_isspace(char c)
-{
-	if (c == ' ')
-		return (1);
-	else
-		return (0);
-}
-
-int		ft_isquote(char c)
-{
-	if (c == '\'' || c == '"')
-		return (1);
-	else
-		return (0);
-}
-
 void	ft_print_argv(char **argv)
 {
 	while (*argv)
