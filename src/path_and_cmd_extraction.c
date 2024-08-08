@@ -61,11 +61,12 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 		while (cmd[j] && cmd[j] != ' ')
 			res[i++] = cmd[j++];
 		res[i] = '\0';
-		if (ft_check_if_cmd_is_executable(res))
+		if (ft_check_if_cmd_is_executable(res)) /*free path here ?*/
 			return (res);
 		ft_free_null(res);
 		path++;
 	}
+	/*free path here ?*/
 	ft_perror_exit("Can't find executable", ENOENT, 94);
 	return (NULL);
 }
