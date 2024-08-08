@@ -71,6 +71,70 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 	return (NULL);
 }
 
+int		ft_isspace(char c)
+{
+	if (c == ' ')
+		return (1);
+	else
+		return (0);
+}
+
+int		ft_isquote(char c)
+{
+	if (c == '\'' || c == '"')
+		return (1);
+	else
+		return (0);
+}
+
+void	ft_print_argv(char **argv)
+{
+	while (*argv)
+	{
+		printf("%s\n", *argv);
+		argv++;
+	}
+}
+
+void	ft_parse_quotes(char *str)
+{
+	unsigned int	i;
+	unsigned char	bell;
+
+	bell = 007;
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isspace(str[i]))
+			str[i] = bell;
+		if (ft_isquote(str[i]))
+		{
+			if (str[i - 1] != '\\')
+				str[i] = bell;
+			while (str[i] && !ft_isquote(str[i]))
+				i++;
+			if (ft_isquote(str[i]))
+				if (str[i - 1] != '\\')
+					str[i] = bell;
+		}
+		i++;
+	}
+}
+
+/*
+ * TODO
+ */
+char	**ft_parse_cmd(char *arg)
+{
+	char			**split_cmd;
+
+	ft_parse_quotes(arg);
+	split_cmd = ft_split(arg, 007);
+	if (!split_cmd)
+		return (NULL);		
+	return (split_cmd);
+}
+
 void	ft_find_executable(t_context *context)
 {
 	int		curr_cmd_nb;
@@ -78,7 +142,8 @@ void	ft_find_executable(t_context *context)
 	//don t forget to check if /bin/ls was input
 	curr_cmd_nb = context->curr_cmd_nb;
 	// this split should be changed for awk and sed
-	context->cmd = ft_split(context->argv[curr_cmd_nb + 2 + context->heredoc], ' ');
+	context->cmd = ft_parse_cmd(context->argv[curr_cmd_nb + 2 + context->heredoc]);
+	//ft_print_argv(context->cmd);
 	if (context->cmd == NULL)
 		ft_perror_exit("Can't find executable", ENOENT, 94);
 	context->executable = ft_prepend_path_cmd(context->path, context->cmd[0]);
