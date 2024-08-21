@@ -16,8 +16,9 @@
 
 # define CHILD	0
 
-# define READ	0
-# define WRITE	1
+# define READ		0
+# define WRITE		1
+# define APPEND		2
 
 typedef struct	s_context
 {
@@ -31,6 +32,7 @@ typedef struct	s_context
 	char	*executable;
 	int		files_fd[2];
 	int		*pipes_fd;
+	unsigned int	heredoc;
 }				t_context;
 
 /*----------------  main.c  ---------------*/
