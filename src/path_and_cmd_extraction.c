@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:56:31 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/26 23:52:09 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/27 00:15:05 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 		ft_free_null(res);
 		path++;
 	}
-	ft_perror_exit("Can't find executable", ENOENT, 94);
 	return (NULL);
 }
 
@@ -96,8 +95,8 @@ void	ft_find_executable(t_context *context)
 	curr_cmd = context->curr_cmd_nb + 2 + context->heredoc;
 	context->cmd = ft_parse_cmd(context->argv[curr_cmd]);
 	if (!context->cmd)
-		ft_perror_exit("Can't find executable", ENOENT, 94);
+		ft_perror_exit("Can't find executable", ENOENT, 10);
 	context->executable = ft_prepend_path_cmd(context->path, context->cmd[0]);
 	if (!context->executable)
-		ft_perror_exit("Can't find executable", ENOENT, 95);
+		ft_perror_exit("Can't find executable", ENOENT, 11);
 }

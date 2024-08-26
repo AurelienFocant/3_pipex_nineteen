@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:59:17 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/26 23:45:58 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/27 00:11:02 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_open_file(char *file, int mode)
 	else if (mode == APPEND)
 		fd = open(file, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd == -1)
-		ft_perror_exit("Error opening file", errno, 197);
+		ft_perror_exit("Error opening file", errno, 7);
 	return (fd);
 }
 
@@ -50,7 +50,7 @@ int	ft_create_heredoc(t_context *context)
 void	ft_duplicate_fds(t_context *context)
 {
 	if (dup2(context->files_fd[STDIN_FILENO], STDIN_FILENO) == -1)
-		ft_perror_exit("Dup2 call on input has failed", errno, 524);
+		ft_perror_exit("Dup2 call on input has failed", errno, 8);
 	if (dup2(context->files_fd[STDOUT_FILENO], STDOUT_FILENO) == -1)
-		ft_perror_exit("Dup2 call on output has failed", errno, 525);
+		ft_perror_exit("Dup2 call on output has failed", errno, 9);
 }

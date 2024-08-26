@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:58:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/26 23:50:39 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/27 00:08:17 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ char	**ft_get_path(char **envp)
 		{
 			env = ft_split(*envp, '=');
 			if (!env)
-				ft_perror_exit("Error parsing env", ENOENT, 4);
+				ft_perror_exit("Error parsing env", ENOENT, 2);
 			path = (ft_split(env[1], ':'));
 			if (!path)
-				ft_perror_exit("Error parsing path", ENOENT, 5);
+				ft_perror_exit("Error parsing path", ENOENT, 3);
 			ft_free_null_strv(env);
 			break ;
 		}

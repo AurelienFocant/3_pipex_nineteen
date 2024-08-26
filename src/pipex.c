@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 22:25:55 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/26 23:41:33 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/27 00:16:25 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_execute_child(t_context *context)
 	execve(context->executable, context->cmd, context->envp);
 	ft_free_null(context->executable);
 	ft_free_null_strv(context->path);
-	ft_perror_exit("Execve has failed", errno, 753);
+	ft_perror_exit("Execve has failed", errno, 12);
 }
 
 void	ft_pipex(t_context *context)
@@ -31,7 +31,7 @@ void	ft_pipex(t_context *context)
 	{
 		pid = fork();
 		if (pid == -1)
-			ft_perror_exit("Fork failed", errno, 741);
+			ft_perror_exit("Fork failed", errno, 6);
 		if (pid == CHILD)
 		{
 			context->curr_cmd_nb = curr_cmd_nb;
@@ -55,12 +55,12 @@ void	ft_prepare_pipe(t_context *context)
 
 	context->pipes_fd = malloc(sizeof(int) * (context->nb_of_pipes * 2));
 	if (context->pipes_fd == NULL)
-		ft_perror_exit("Malloc on pipe array has failed", errno, 2);
+		ft_perror_exit("Malloc on pipe array has failed", errno, 4);
 	n = 0;
 	while (n < context->nb_of_pipes * 2)
 	{
 		if (pipe(context->pipes_fd + n) == -1)
-			ft_perror_exit("Pipe creation has failed", errno, 3);
+			ft_perror_exit("Pipe creation has failed", errno, 5);
 		n += 2;
 	}
 }
