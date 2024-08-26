@@ -6,36 +6,11 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:56:31 by afocant           #+#    #+#             */
-/*   Updated: 2024/07/17 16:36:18 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/26 22:53:06 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-char	**ft_get_path(char **envp)
-{
-	char	**env;
-	char	**path;
-
-	env = NULL;
-	path = NULL;
-	while (*envp)
-	{
-		if (ft_strncmp(*envp, "PATH=", ft_strlen("PATH=")) == 0)
-		{
-			env = ft_split(*envp, '=');
-			if (!env)
-				ft_perror_exit("Error parsing env", ENOENT, 4);
-			path = (ft_split(env[1], ':'));
-			if (!path)
-				ft_perror_exit("Error parsing path", ENOENT, 5);
-			ft_free_null_strv(env);
-			return (path);
-		}
-		envp++;
-	}
-	return (NULL);
-}
 
 char	*ft_cat_path_cmd(char **path, char *cmd)
 {

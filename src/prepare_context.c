@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:58:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/07/25 17:02:10 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/26 23:10:25 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,36 @@ int		ft_check_heredoc(int argc, char **argv)
 		return (1);
 	else
 		return (0);
+}
+
+char	**ft_get_path(char **envp)
+{
+	char	**env;
+	char	**path;
+
+	if (!*envp)
+	{
+		path = malloc(sizeof(char *) * 1);
+		if (!path)
+			return (NULL);
+		*path = NULL;
+	}
+	while (*envp)
+	{
+		if (ft_strncmp(*envp, "PATH=", ft_strlen("PATH=")) == 0)
+		{
+			env = ft_split(*envp, '=');
+			if (!env)
+				ft_perror_exit("Error parsing env", ENOENT, 4);
+			path = (ft_split(env[1], ':'));
+			if (!path)
+				ft_perror_exit("Error parsing path", ENOENT, 5);
+			ft_free_null_strv(env);
+			return (path);
+		}
+		envp++;
+	}
+	return (path);
 }
 
 t_context	ft_initialise_context(int argc, char **argv, char **envp)
