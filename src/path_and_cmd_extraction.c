@@ -21,21 +21,17 @@ char	**ft_get_path(char **envp)
 	path = NULL;
 	while (*envp)
 	{
-		env = ft_split(*envp, '=');
-		if (!env)
-			ft_perror_exit("Error parsing env", ENOENT, 4);
-		if (ft_strncmp(env[0], "PATH", ft_strlen("PATH")) == 0)
+		if (ft_strncmp(*envp, "PATH=", ft_strlen("PATH=")) == 0)
 		{
+			env = ft_split(*envp, '=');
+			if (!env)
+				ft_perror_exit("Error parsing env", ENOENT, 4);
 			path = (ft_split(env[1], ':'));
-			ft_free_null_strv(env);
-			/*
 			if (!path)
-				ft_perror_exit("No valid $PATH was provided", ENOENT, 5);
-			// Should not exit !! Could be no envp but directly given an executable
-			*/
+				ft_perror_exit("Error parsing path", ENOENT, 5);
+			ft_free_null_strv(env);
 			return (path);
 		}
-		ft_free_null_strv(env);
 		envp++;
 	}
 	return (NULL);
@@ -66,7 +62,6 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 		ft_free_null(res);
 		path++;
 	}
-	/*free path here ?*/
 	ft_perror_exit("Can't find executable", ENOENT, 94);
 	return (NULL);
 }
@@ -105,9 +100,6 @@ void	ft_parse_quotes(char *str)
 	}
 }
 
-/*
- * TODO
- */
 char	**ft_parse_cmd(char *arg)
 {
 	char			**split_cmd;
@@ -123,12 +115,9 @@ void	ft_find_executable(t_context *context)
 {
 	int		curr_cmd_nb;
 
-	//don t forget to check if /bin/ls was input
 	curr_cmd_nb = context->curr_cmd_nb;
-	// this split should be changed for awk and sed
 	context->cmd = ft_parse_cmd(context->argv[curr_cmd_nb + 2 + context->heredoc]);
-	//ft_print_argv(context->cmd);
-	if (context->cmd == NULL)
+	if (!context->cmd)
 		ft_perror_exit("Can't find executable", ENOENT, 94);
 	context->executable = ft_prepend_path_cmd(context->path, context->cmd[0]);
 }

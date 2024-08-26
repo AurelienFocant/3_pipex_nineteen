@@ -43,6 +43,7 @@ void	ft_pipex(t_context *context)
 	}
 	ft_close_pipes(context);
 	ft_wait_for_all_children(context);
+	ft_free_null_strv(context->path);
 	if (context->heredoc)
 		unlink(".heredoc.tmp");
 }

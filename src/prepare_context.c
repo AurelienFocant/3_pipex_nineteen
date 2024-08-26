@@ -14,7 +14,7 @@
 
 int		ft_check_heredoc(int argc, char **argv)
 {
-	if (argc < 6) /* ?? */
+	if (argc < 6)
 		return (0);
 	if (ft_strcmp(argv[1], "here_doc") == 0)
 		return (1);
