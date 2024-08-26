@@ -1,0 +1,78 @@
+BUFFER_SIZE	../includes/get_next_line.h	/^#  define BUFFER_SIZE 42$/
+FD_MAX	../includes/get_next_line.h	/^#  define FD_MAX 256$/
+FT_PRINTF_H	../includes/ft_printf.h	/^#define FT_PRINTF_H$/
+GET_NEXT_LINE_BONUS_H	../includes/get_next_line.h	/^#define GET_NEXT_LINE_BONUS_H$/
+LIBFT_H	../includes/libft.h	/^#define LIBFT_H$/
+ft_atoi	../src/str_fn/ft_atoi.c	/^int	ft_atoi(const char *str)$/
+ft_atol	../src/str_fn/ft_atol.c	/^long	ft_atol(const char *str)$/
+ft_bzero	../src/mem_fn/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/
+ft_calloc	../src/mem_fn/ft_calloc.c	/^void	*ft_calloc(size_t count, size_t size)$/
+ft_count_strs	../src/str_fn/ft_split.c	/^static size_t	ft_count_strs(const char *s, char c)/
+ft_divide_stash	../src/get_next_line/get_next_line.c	/^char	*ft_divide_stash(char **stash)$/
+ft_extract_line	../src/get_next_line/get_next_line_utils.c	/^char	*ft_extract_line(char *stash)$/
+ft_fill_strs	../src/str_fn/ft_split.c	/^static char	**ft_fill_strs(const char *s, char c,$/
+ft_findlen	../src/str_fn/ft_itoa.c	/^static int	ft_findlen(int n)$/
+ft_free_and_null	../src/get_next_line/get_next_line_utils.c	/^char	*ft_free_and_null(char **str)$/
+ft_get_next_line	../src/get_next_line/get_next_line.c	/^char	*ft_get_next_line(int fd)$/
+ft_getlen	../src/printf/ft_printf_utils.c	/^int	ft_getlen(char *s)$/
+ft_is_a_space	../src/str_fn/ft_atoi.c	/^int	ft_is_a_space(char c)$/
+ft_is_negative	../src/str_fn/ft_itoa.c	/^static unsigned int	ft_is_negative(int n)$/
+ft_is_sep	../src/str_fn/ft_split.c	/^static int	ft_is_sep(char c, char sep)$/
+ft_isalnum	../src/str_fn/ft_isalnum.c	/^int	ft_isalnum(int c)$/
+ft_isalpha	../src/str_fn/ft_isalpha.c	/^int	ft_isalpha(int c)$/
+ft_isascii	../src/str_fn/ft_isascii.c	/^int	ft_isascii(int c)$/
+ft_isdigit	../src/str_fn/ft_isdigit.c	/^int	ft_isdigit(int c)$/
+ft_isprint	../src/str_fn/ft_isprint.c	/^int	ft_isprint(int c)$/
+ft_isquote	../src/str_fn/ft_isquote.c	/^int	ft_isquote(int c)$/
+ft_isspace	../src/str_fn/ft_isspace.c	/^int	ft_isspace(int c)$/
+ft_itoa	../src/str_fn/ft_itoa.c	/^char	*ft_itoa(int n)$/
+ft_join_stash_buff	../src/get_next_line/get_next_line.c	/^char	*ft_join_stash_buff(char *stash, char *buf, s/
+ft_len_strsep	../src/str_fn/ft_split.c	/^static size_t	ft_len_strsep(const char *s, char c)/
+ft_lstadd_back	../src/list_fn/ft_lstadd_back_bonus.c	/^void	ft_lstadd_back(t_list **lst, t_list *new)$/
+ft_lstadd_front	../src/list_fn/ft_lstadd_front_bonus.c	/^void	ft_lstadd_front(t_list **lst, t_list *new)$/
+ft_lstclear	../src/list_fn/ft_lstclear_bonus.c	/^void	ft_lstclear(t_list **lst, void (*del)(void *)/
+ft_lstdelone	../src/list_fn/ft_lstdelone_bonus.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void *)/
+ft_lstiter	../src/list_fn/ft_lstiter_bonus.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/
+ft_lstlast	../src/list_fn/ft_lstlast_bonus.c	/^t_list	*ft_lstlast(t_list *lst)$/
+ft_lstmap	../src/list_fn/ft_lstmap_bonus.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),/
+ft_lstnew	../src/list_fn/ft_lstnew_bonus.c	/^t_list	*ft_lstnew(void *content)$/
+ft_lstsize	../src/list_fn/ft_lstsize_bonus.c	/^int	ft_lstsize(t_list *lst)$/
+ft_memchr	../src/mem_fn/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/
+ft_memcmp	../src/mem_fn/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size/
+ft_memcpy	../src/mem_fn/ft_memcpy.c	/^void	*ft_memcpy(void *dst, const void *src, size_t/
+ft_memmove	../src/mem_fn/ft_memmove.c	/^void	*ft_memmove(void *dst, const void *src, size_/
+ft_memset	../src/mem_fn/ft_memset.c	/^void	*ft_memset(void *b, int c, size_t len)$/
+ft_parse_arg	../src/printf/ft_printf.c	/^int	ft_parse_arg(char c, va_list *arg)$/
+ft_print_char	../src/printf/ft_printf_utils.c	/^int	ft_print_char(char c)$/
+ft_print_nbr_base	../src/str_fn/ft_print_nbr.c	/^int	ft_print_nbr_base(int n, char *base)$/
+ft_print_neg_nbr	../src/str_fn/ft_print_nbr.c	/^int	ft_print_neg_nbr(int n, char *base)$/
+ft_print_ptr	../src/str_fn/ft_print_ptr.c	/^int	ft_print_ptr(unsigned long long n)$/
+ft_print_ptr_base	../src/str_fn/ft_print_ptr.c	/^int	ft_print_ptr_base(unsigned long long n, char */
+ft_print_string	../src/printf/ft_printf_utils.c	/^int	ft_print_string(char *s)$/
+ft_print_strv	../src/str_fn/ft_print_strv.c	/^void	ft_print_strv(char **strv)$/
+ft_print_unsigned_nbr_base	../src/str_fn/ft_print_nbr.c	/^int	ft_print_unsigned_nbr_base(unsigned int n, cha/
+ft_printf	../src/printf/ft_printf.c	/^int	ft_printf(const char *format, ...)$/
+ft_putchar_fd	../src/str_fn/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/
+ft_putendl_fd	../src/str_fn/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/
+ft_putnbr_fd	../src/str_fn/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/
+ft_putstr_fd	../src/str_fn/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/
+ft_read_file	../src/get_next_line/get_next_line.c	/^char	*ft_read_file(int fd, char **stash)$/
+ft_split	../src/str_fn/ft_split.c	/^char	**ft_split(char const *s, char c)$/
+ft_strchr	../src/str_fn/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/
+ft_strcmp	../src/str_fn/ft_strcmp.c	/^int	ft_strcmp(const char *s1, const char *s2)$/
+ft_strdup	../src/str_fn/ft_strdup.c	/^char	*ft_strdup(const char *s1)$/
+ft_striteri	../src/str_fn/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, /
+ft_strjoin	../src/str_fn/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/
+ft_strlcat	../src/str_fn/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size/
+ft_strlcpy	../src/str_fn/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dst, const char *src, size/
+ft_strlen	../src/str_fn/ft_strlen.c	/^size_t	ft_strlen(const char *s)$/
+ft_strmapi	../src/str_fn/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f) (unsigne/
+ft_strncmp	../src/str_fn/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, siz/
+ft_strnstr	../src/str_fn/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char /
+ft_strrchr	../src/str_fn/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/
+ft_strtrim	../src/str_fn/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/
+ft_substr	../src/str_fn/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start,/
+ft_tolower	../src/str_fn/ft_tolower.c	/^int	ft_tolower(int c)$/
+ft_toupper	../src/str_fn/ft_toupper.c	/^int	ft_toupper(int c)$/
+ft_trim_stash	../src/get_next_line/get_next_line_utils.c	/^char	*ft_trim_stash(char *stash, char *start)$/
+t_list	../includes/libft.h	/^}					t_list;$/
