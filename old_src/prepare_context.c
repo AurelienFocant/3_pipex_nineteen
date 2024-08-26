@@ -68,6 +68,7 @@ void		ft_prepare_io(t_context *context)
 			context->files_fd[STDIN_FILENO] = ft_create_heredoc(context);
 		else
 			context->files_fd[STDIN_FILENO] = ft_open_file(infile, READ);
+		// close infile after dup !!
 	}
 	else if (context->curr_cmd_nb == last_cmd)
 	{
@@ -76,6 +77,7 @@ void		ft_prepare_io(t_context *context)
 			context->files_fd[STDOUT_FILENO] = ft_open_file(outfile, APPEND);
 		else
 			context->files_fd[STDOUT_FILENO] = ft_open_file(outfile, WRITE);
+		// close outfile after dup !!
 	}
 	else
 	{
@@ -100,12 +102,12 @@ void		ft_prepare_pipe(t_context *context)
 	nb_of_pipes = context->argc - 1 - 2 - 1 - context->heredoc;
 	context->pipes_fd = malloc(sizeof(int) * (nb_of_pipes * 2));
 	if (context->pipes_fd == NULL)
-		ft_perror_exit("Pipe failed", errno, 453);
+		ft_perror_exit("Malloc on pipe array has failed", errno, 453);
 	n = 0;
 	while (n < nb_of_pipes * 2)
 	{
 		if (pipe(context->pipes_fd + n) == -1)
-			ft_perror_exit("Pipe failed", errno, 454);
+			ft_perror_exit("Pipe creation has failed", errno, 454);
 		n += 2;
 	}
 }

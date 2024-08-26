@@ -22,17 +22,18 @@
 
 typedef struct	s_context
 {
-	int		argc;
-	char	**argv;
-	char	**envp;
-	int		nb_of_cmds;
-	int		curr_cmd_nb;
-	char	**path;
-	char	**cmd;
-	char	*executable;
-	int		files_fd[2];
-	int		*pipes_fd;
+	int				argc;
+	char			**argv;
+	char			**envp;
+	char			**path;
 	unsigned int	heredoc;
+	int				nb_of_pipes;
+	int				nb_of_cmds;
+	int				curr_cmd_nb;
+	char			**cmd;
+	char			*executable;
+	int				files_fd[2];
+	int				*pipes_fd;
 }				t_context;
 
 # include "prototypes_pipex.h"
