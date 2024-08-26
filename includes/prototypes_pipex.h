@@ -39,10 +39,10 @@ int	ft_check_valid_files(char *infile, char *outfile);
 /*----------------  utils_cleanup.c  ---------------*/
 void	ft_wait_for_all_children(t_context *context);
 void	ft_close_pipes(t_context *context);
-
-/*----------------  utils_manage_errors.c  ---------------*/
 void	ft_free_null(char *ptr);
 void	ft_free_null_strv(char **strv);
 int		ft_perror_exit(char *error, int my_errno, int errnb);
+
+/*----------------  utils_manage_errors.c  ---------------*/
 
 #endif
