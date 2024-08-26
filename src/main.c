@@ -6,13 +6,13 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:56:17 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/26 22:27:32 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/26 23:47:02 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int		main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_context	context;
 

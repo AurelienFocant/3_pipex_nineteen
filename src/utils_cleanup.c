@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:59:13 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/26 23:17:24 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/26 23:52:57 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_free_null_strv(char **strv)
 	strv = NULL;
 }
 
-int		ft_perror_exit(char *error, int my_errno, int errnb)
+int	ft_perror_exit(char *error, int my_errno, int errnb)
 {
 	if (!errno)
 		errno = my_errno;

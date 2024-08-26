@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:56:31 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/26 22:53:06 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/26 23:52:09 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 {
 	char	*res;
 
-	if(ft_check_if_cmd_is_executable(cmd))
+	if (ft_check_if_cmd_is_executable(cmd))
 		return (ft_strdup(cmd));
 	while (path && *path)
 	{
@@ -85,16 +85,16 @@ char	**ft_parse_cmd(char *arg)
 	ft_parse_quotes(arg);
 	split_cmd = ft_split(arg, 007);
 	if (!split_cmd)
-		return (NULL);		
+		return (NULL);
 	return (split_cmd);
 }
 
 void	ft_find_executable(t_context *context)
 {
-	int		curr_cmd_nb;
+	int		curr_cmd;
 
-	curr_cmd_nb = context->curr_cmd_nb;
-	context->cmd = ft_parse_cmd(context->argv[curr_cmd_nb + 2 + context->heredoc]);
+	curr_cmd = context->curr_cmd_nb + 2 + context->heredoc;
+	context->cmd = ft_parse_cmd(context->argv[curr_cmd]);
 	if (!context->cmd)
 		ft_perror_exit("Can't find executable", ENOENT, 94);
 	context->executable = ft_prepend_path_cmd(context->path, context->cmd[0]);
