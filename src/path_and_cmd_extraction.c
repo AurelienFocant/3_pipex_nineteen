@@ -37,42 +37,45 @@ char	**ft_get_path(char **envp)
 	return (NULL);
 }
 
-char	*ft_prepend_path_cmd(char **path, char *cmd)
+char	*ft_cat_path_cmd(char **path, char *cmd)
 {
 	char	*res;
 	size_t	i;
 	size_t	j;
 
+	res = malloc(sizeof(char) * (ft_strlen(*path) + ft_strlen(cmd) + 2));
+	if (!res)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while ((*path)[j])
+		res[i++] = (*path)[j++];
+	res[i++] = '/';
+	j = 0;
+	while (cmd[j] && cmd[j] != ' ')
+		res[i++] = cmd[j++];
+	res[i] = '\0';
+	return (res);
+}
+
+char	*ft_prepend_path_cmd(char **path, char *cmd)
+{
+	char	*res;
+
+	if(ft_check_if_cmd_is_executable(cmd))
+		return (ft_strdup(cmd));
 	while (path && *path)
 	{
-		res = malloc(sizeof(char) * (ft_strlen(*path) + ft_strlen(cmd) + 2));
+		res = ft_cat_path_cmd(path, cmd);
 		if (!res)
 			return (NULL);
-		i = 0;
-		j = 0;
-		while ((*path)[j])
-			res[i++] = (*path)[j++];
-		res[i++] = '/';
-		j = 0;
-		while (cmd[j] && cmd[j] != ' ')
-			res[i++] = cmd[j++];
-		res[i] = '\0';
-		if (ft_check_if_cmd_is_executable(res)) /*free path here ?*/
+		if (ft_check_if_cmd_is_executable(res))
 			return (res);
 		ft_free_null(res);
 		path++;
 	}
 	ft_perror_exit("Can't find executable", ENOENT, 94);
 	return (NULL);
-}
-
-void	ft_print_argv(char **argv)
-{
-	while (*argv)
-	{
-		printf("%s\n", *argv);
-		argv++;
-	}
 }
 
 void	ft_parse_quotes(char *str)
@@ -120,4 +123,6 @@ void	ft_find_executable(t_context *context)
 	if (!context->cmd)
 		ft_perror_exit("Can't find executable", ENOENT, 94);
 	context->executable = ft_prepend_path_cmd(context->path, context->cmd[0]);
+	if (!context->executable)
+		ft_perror_exit("Can't find executable", ENOENT, 95);
 }

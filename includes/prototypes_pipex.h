@@ -9,8 +9,8 @@ void	ft_close_pipes(t_context *context);
 
 /*----------------  path_and_cmd_extraction.c  ---------------*/
 char	**ft_get_path(char **envp);
+char	*ft_cat_path_cmd(char **path, char *cmd);
 char	*ft_prepend_path_cmd(char **path, char *cmd);
-void	ft_print_argv(char **argv);
 void	ft_parse_quotes(char *str);
 char	**ft_parse_cmd(char *arg);
 void	ft_find_executable(t_context *context);
