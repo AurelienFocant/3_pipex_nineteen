@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:59:17 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/27 00:11:02 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/28 15:31:56 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,15 @@ int	ft_create_heredoc(t_context *context)
 {
 	int		fd;
 	char	*line;
+	char	*delimiter;
 
 	fd = ft_open_file(".heredoc.tmp", WRITE);
 	ft_putstr_fd("pipe heredoc> ", STDOUT_FILENO);
+	delimiter = ft_strjoin(context->argv[2], "\n");
+	if (!delimiter)
+		ft_perror_exit("Malloc on here_doc delimiter has failed", ENOENT, 123);
 	line = ft_get_next_line(STDIN_FILENO);
-	while (line && ft_strncmp(context->argv[2], line, ft_strlen(line) - 1) != 0)
+	while (line && ft_strcmp(delimiter, line) != 0)
 	{
 		ft_putstr_fd("pipe heredoc> ", STDOUT_FILENO);
 		ft_putstr_fd(line, fd);
@@ -44,6 +48,7 @@ int	ft_create_heredoc(t_context *context)
 	}
 	close(fd);
 	fd = ft_open_file(".heredoc.tmp", READ);
+	free(delimiter);
 	return (fd);
 }
 
