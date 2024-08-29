@@ -3,7 +3,8 @@
 *.swp
 
 pipex
-obj/*
+*obj/*
+*.a
 
 infile
 outfile
