@@ -40,7 +40,7 @@ int	ft_create_heredoc(t_context *context)
 	fd = ft_open_file(".heredoc.tmp", WRITE);
 	ft_putstr_fd("pipe heredoc> ", STDOUT_FILENO);
 	line = ft_get_next_line(STDIN_FILENO);
-	while (line && ft_strncmp(delimiter, line, ft_strlen(delimiter) - 1) != 0)
+	while (line && ft_strcmp(delimiter, line) != 0)
 	{
 		ft_putstr_fd("pipe heredoc> ", STDOUT_FILENO);
 		ft_putstr_fd(line, fd);
