@@ -38,6 +38,7 @@ $(NAME):	$(OBJ) $(LIBFT_DIR)/$(LIBFT)
 	$(CC) $(CFLAGS) $(GFLAGS) $(OBJ) -o $@ $(LIB_FLAGS)
 
 $(LIBFT_DIR)/$(LIBFT):
+	@echo "LIBFT being created"
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
@@ -58,11 +59,13 @@ libclean:
 	rm -rf $(LIBFT_DIR)/$(OBJ_DIR)
 	rm -rf $(LIBFT_DIR)/$(LIBFT)
 
+efclean: fclean libclean
+
 re: fclean lib all
 
 libre: libclean lib
 
-.PHONY: all lib clean fclean libclean re
+.PHONY: all bonus lib libre clean fclean libclean efclean re
 #---------------------------------------------------------#
 SRC_DIR_BONUS		=	src_bonus
 
@@ -84,3 +87,4 @@ $(OBJ_DIR_BONUS)/%.o: $(SRC_DIR_BONUS)/%.c | $(OBJ_DIR_BONUS)
 
 $(OBJ_DIR_BONUS):
 	@mkdir -p $@
+#---------------------------------------------------------#
