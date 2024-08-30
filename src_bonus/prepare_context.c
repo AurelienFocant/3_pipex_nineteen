@@ -6,11 +6,21 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:58:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/30 12:01:13 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/30 12:01:16 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
+
+int	ft_check_heredoc(int argc, char **argv)
+{
+	if (argc < 6)
+		return (0);
+	if (ft_strcmp(argv[1], "here_doc") == 0)
+		return (1);
+	else
+		return (0);
+}
 
 char	**ft_get_path(char **envp)
 {
@@ -46,7 +56,8 @@ t_context	ft_initialise_context(int argc, char **argv, char **envp)
 	context.argv = argv;
 	context.envp = envp;
 	context.path = ft_get_path(envp);
-	context.nb_of_cmds = argc - PROG_NAME - IO_FILES;
+	context.heredoc = ft_check_heredoc(argc, argv);
+	context.nb_of_cmds = argc - PROG_NAME - IO_FILES - context.heredoc;
 	context.nb_of_pipes = context.nb_of_cmds - 1;
 	context.pipes_fd = NULL;
 	context.executable = NULL;

@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_check_files.c                                :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 00:59:08 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/28 14:24:10 by afocant          ###   ########.fr       */
+/*   Created: 2024/07/06 00:56:17 by afocant           #+#    #+#             */
+/*   Updated: 2024/08/29 16:56:29 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	ft_check_if_cmd_is_executable(char *arg)
+int	main(int argc, char **argv, char **envp)
 {
-	if (access(arg, X_OK) == 0)
-		return (TRUE);
-	return (FALSE);
-}
+	t_context	context;
 
-int	ft_check_argc(int argc)
-{
-	if (argc != 5)
-		return (0);
-	return (1);
-}
-
-int	ft_check_valid_files(char *infile, char *outfile)
-{
-	if (access(infile, R_OK) == -1)
-		return (FALSE);
-	if (access(outfile, F_OK) == 0)
-		if (access(outfile, W_OK) == -1)
-			return (FALSE);
-	return (TRUE);
+	if (!ft_check_argc(argc))
+		ft_perror_exit("Invalid number of arguments", EINVAL, 1);
+	context = ft_initialise_context(argc, argv, envp);
+	ft_pipex(&context);
+	exit(EXIT_SUCCESS);
 }

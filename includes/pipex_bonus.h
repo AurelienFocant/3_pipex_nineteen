@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/27 01:13:18 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/30 11:49:32 by afocant          ###   ########.fr       */
+/*   Created: 2024/08/27 01:13:23 by afocant           #+#    #+#             */
+/*   Updated: 2024/08/30 11:49:26 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <unistd.h>
 # include <stdio.h>
@@ -20,7 +20,7 @@
 # include <errno.h>
 # include <sys/wait.h>
 
-# include "pipex.h"
+# include "pipex_bonus.h"
 # include "libft.h"
 
 # define FALSE	0
@@ -41,6 +41,7 @@ typedef struct s_context
 	char			**argv;
 	char			**envp;
 	char			**path;
+	unsigned int	heredoc;
 	int				nb_of_pipes;
 	int				nb_of_cmds;
 	int				curr_cmd_nb;
@@ -56,8 +57,9 @@ void		ft_pipex(t_context *context);
 void		ft_prepare_pipe(t_context *context);
 
 /*----------------  prepare_context.c  ---------------*/
-t_context	ft_initialise_context(int argc, char **argv, char **envp);
+int			ft_check_heredoc(int argc, char **argv);
 char		**ft_get_path(char **envp);
+t_context	ft_initialise_context(int argc, char **argv, char **envp);
 
 /*----------------  path_and_cmd_extraction.c  ---------------*/
 char		*ft_cat_path_cmd(char **path, char *cmd);
@@ -69,6 +71,7 @@ void		ft_find_executable(t_context *context);
 /*----------------  setup_redirection.c  ---------------*/
 void		ft_redirection_first_child(t_context *context);
 void		ft_redirection_last_child(t_context *context);
+void		ft_redirection_middle_children(t_context *context);
 void		ft_setup_redirection(t_context *context);
 
 /*----------------  utils_check_files.c  ---------------*/
@@ -85,6 +88,7 @@ int			ft_perror_exit(char *error, int my_errno, int errnb);
 
 /*----------------  utils_redirection.c  ---------------*/
 int			ft_open_file(char *file, int mode);
+int			ft_create_heredoc(t_context *context);
 void		ft_duplicate_fds(t_context *context);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:59:08 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/28 14:24:10 by afocant          ###   ########.fr       */
+/*   Updated: 2024/07/06 00:59:09 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_check_if_cmd_is_executable(char *arg)
 
 int	ft_check_argc(int argc)
 {
-	if (argc != 5)
+	if (argc < 5)
 		return (0);
 	return (1);
 }

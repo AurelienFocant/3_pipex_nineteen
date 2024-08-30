@@ -6,11 +6,11 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:59:13 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/28 14:24:01 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/27 01:01:16 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	ft_wait_for_all_children(t_context *context)
 {

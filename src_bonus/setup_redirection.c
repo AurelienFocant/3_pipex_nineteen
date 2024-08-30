@@ -6,11 +6,11 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 23:43:45 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/28 14:23:55 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/27 01:01:54 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	ft_redirection_first_child(t_context *context)
 {
@@ -20,7 +20,10 @@ void	ft_redirection_first_child(t_context *context)
 	infile = context->argv[1];
 	pipe_out = (context->curr_cmd_nb * 2 + 1);
 	context->files_fd[STDOUT_FILENO] = context->pipes_fd[pipe_out];
-	context->files_fd[STDIN_FILENO] = ft_open_file(infile, READ);
+	if (context->heredoc)
+		context->files_fd[STDIN_FILENO] = ft_create_heredoc(context);
+	else
+		context->files_fd[STDIN_FILENO] = ft_open_file(infile, READ);
 	ft_duplicate_fds(context);
 	close(context->files_fd[STDIN_FILENO]);
 }
@@ -33,9 +36,24 @@ void	ft_redirection_last_child(t_context *context)
 	outfile = context->argv[context->argc - 1];
 	pipe_in = (context->curr_cmd_nb * 2 - 2);
 	context->files_fd[STDIN_FILENO] = context->pipes_fd[pipe_in];
-	context->files_fd[STDOUT_FILENO] = ft_open_file(outfile, WRITE);
+	if (context->heredoc)
+		context->files_fd[STDOUT_FILENO] = ft_open_file(outfile, APPEND);
+	else
+		context->files_fd[STDOUT_FILENO] = ft_open_file(outfile, WRITE);
 	ft_duplicate_fds(context);
 	close(context->files_fd[STDOUT_FILENO]);
+}
+
+void	ft_redirection_middle_children(t_context *context)
+{
+	int		pipe_in;
+	int		pipe_out;
+
+	pipe_in = (context->curr_cmd_nb * 2 - 2);
+	pipe_out = (context->curr_cmd_nb * 2 + 1);
+	context->files_fd[STDIN_FILENO] = context->pipes_fd[pipe_in];
+	context->files_fd[STDOUT_FILENO] = context->pipes_fd[pipe_out];
+	ft_duplicate_fds(context);
 }
 
 void	ft_setup_redirection(t_context *context)
@@ -49,4 +67,6 @@ void	ft_setup_redirection(t_context *context)
 		ft_redirection_first_child(context);
 	else if (context->curr_cmd_nb == last_cmd)
 		ft_redirection_last_child(context);
+	else
+		ft_redirection_middle_children(context);
 }
