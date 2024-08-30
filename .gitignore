@@ -3,11 +3,12 @@
 *.swp
 
 pipex
-obj/*
+*obj/
+*.a
 
 infile
 outfile
 misc/outfile
 
-misc/tags
+*/tags
 *Session*

@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 01:13:18 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/28 13:52:51 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/30 11:49:32 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # define READ		0
 # define WRITE		1
 # define APPEND		2
+
+# define PROG_NAME	1 
+# define IO_FILES	2 
 
 typedef struct s_context
 {

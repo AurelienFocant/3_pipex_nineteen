@@ -53,7 +53,7 @@ libclean:
 	rm -rf $(LIBFT_DIR)/$(OBJ_DIR)
 	rm -rf $(LIBFT_DIR)/$(LIBFT)
 
-re: fclean all
+re: fclean lib all
 
 libre: libclean lib
 #---------------------------------------------------------#

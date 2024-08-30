@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:58:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/28 14:23:53 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/30 12:01:13 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	**ft_get_path(char **envp)
 	char	**env;
 	char	**path;
 
-	if (!*envp)
-		path = ft_split("", ' ');
 	while (*envp)
 	{
 		if (ft_strncmp(*envp, "PATH=", ft_strlen("PATH=")) == 0)
@@ -30,10 +28,13 @@ char	**ft_get_path(char **envp)
 			if (!path)
 				ft_perror_exit("Error parsing path", ENOENT, 3);
 			ft_free_null_strv(env);
-			break ;
+			return (path);
 		}
 		envp++;
 	}
+	path = ft_split("", ' ');
+	if (!path)
+		ft_perror_exit("Error parsing path", ENOENT, 123);
 	return (path);
 }
 
@@ -45,13 +46,13 @@ t_context	ft_initialise_context(int argc, char **argv, char **envp)
 	context.argv = argv;
 	context.envp = envp;
 	context.path = ft_get_path(envp);
-	context.nb_of_pipes = context.argc - 1 - 2 - 1;
-	context.nb_of_cmds = argc - 3;
-	context.curr_cmd_nb = -1;
-	context.cmd = NULL;
+	context.nb_of_cmds = argc - PROG_NAME - IO_FILES;
+	context.nb_of_pipes = context.nb_of_cmds - 1;
+	context.pipes_fd = NULL;
 	context.executable = NULL;
+	context.cmd = NULL;
+	context.curr_cmd_nb = -1;
 	context.files_fd[0] = -1;
 	context.files_fd[1] = -1;
-	context.pipes_fd = NULL;
 	return (context);
 }

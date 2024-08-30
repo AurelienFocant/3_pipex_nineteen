@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:56:31 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/27 01:00:48 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/29 15:32:42 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_find_executable(t_context *context)
 
 	curr_cmd = context->curr_cmd_nb + 2 + context->heredoc;
 	context->cmd = ft_parse_cmd(context->argv[curr_cmd]);
-	if (!context->cmd)
+	if (!context->cmd || !*(context->cmd))
 		ft_perror_exit("Can't find executable", ENOENT, 10);
 	context->executable = ft_prepend_path_cmd(context->path, context->cmd[0]);
 	if (!context->executable)
