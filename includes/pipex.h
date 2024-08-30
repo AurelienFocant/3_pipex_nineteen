@@ -20,6 +20,9 @@
 # define WRITE		1
 # define APPEND		2
 
+# define PROG_NAME	1 
+# define IO_FILES	2 
+
 typedef struct	s_context
 {
 	int				argc;

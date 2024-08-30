@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:58:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/29 14:27:17 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/30 11:47:59 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ t_context	ft_initialise_context(int argc, char **argv, char **envp)
 	context.envp = envp;
 	context.path = ft_get_path(envp);
 	context.heredoc = ft_check_heredoc(argc, argv);
-	context.nb_of_pipes = context.argc - 1 - 2 - 1 - context.heredoc;
-	context.nb_of_cmds = argc - 3 - context.heredoc;
-	context.curr_cmd_nb = -1;
-	context.cmd = NULL;
+	context.nb_of_cmds = argc - PROG_NAME - IO_FILES - context.heredoc;
+	context.nb_of_pipes = context.nb_of_cmds - 1;
+	context.pipes_fd = NULL;
 	context.executable = NULL;
+	context.cmd = NULL;
+	context.curr_cmd_nb = -1;
 	context.files_fd[0] = -1;
 	context.files_fd[1] = -1;
-	context.pipes_fd = NULL;
 	return (context);
 }
