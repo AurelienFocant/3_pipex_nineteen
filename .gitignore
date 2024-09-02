@@ -2,8 +2,8 @@
 
 *.swp
 
-pipex
-*obj/
+pipex*
+*obj*/
 *.a
 
 infile
