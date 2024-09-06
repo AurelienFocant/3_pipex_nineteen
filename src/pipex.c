@@ -36,8 +36,6 @@ void	ft_prepare_pipe(t_context *context)
 	}
 }
 
-#include <signal.h>
-
 void	ft_pipex(t_context *context)
 {
 	int		curr_cmd_nb;
