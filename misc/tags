@@ -1,0 +1,122 @@
+APPEND	../includes/pipex.h	/^#define APPEND		2$/
+APPEND	../includes/pipex_bonus.h	/^#define APPEND		2$/
+BUFFER_SIZE	../libft/includes/get_next_line.h	/^#  define BUFFER_SIZE 42$/
+CHILD	../includes/pipex.h	/^#define CHILD	0$/
+CHILD	../includes/pipex_bonus.h	/^#define CHILD	0$/
+FALSE	../includes/pipex.h	/^#define FALSE	0$/
+FALSE	../includes/pipex_bonus.h	/^#define FALSE	0$/
+FD_MAX	../libft/includes/get_next_line.h	/^#  define FD_MAX 256$/
+FT_PRINTF_H	../libft/includes/ft_printf.h	/^#define FT_PRINTF_H$/
+GET_NEXT_LINE_H	../libft/includes/get_next_line.h	/^#define GET_NEXT_LINE_H$/
+IO_FILES	../includes/pipex.h	/^#define IO_FILES	2 $/
+IO_FILES	../includes/pipex_bonus.h	/^#define IO_FILES	2 $/
+LIBFT_H	../libft/includes/libft.h	/^#define LIBFT_H$/
+Mmain	../src/main.c	/^int	main(int argc, char **argv, char **envp)$/
+PIPEX_BONUS_H	../includes/pipex_bonus.h	/^#define PIPEX_BONUS_H$/
+PIPEX_H	../includes/pipex.h	/^#define PIPEX_H$/
+PROG_NAME	../includes/pipex.h	/^#define PROG_NAME	1 $/
+PROG_NAME	../includes/pipex_bonus.h	/^#define PROG_NAME	1 $/
+READ	../includes/pipex.h	/^#define READ		0$/
+READ	../includes/pipex_bonus.h	/^#define READ		0$/
+TRUE	../includes/pipex.h	/^#define TRUE	1$/
+TRUE	../includes/pipex_bonus.h	/^#define TRUE	1$/
+WRITE	../includes/pipex.h	/^#define WRITE		1$/
+WRITE	../includes/pipex_bonus.h	/^#define WRITE		1$/
+ft_atoi	../libft/src/str_fn/ft_atoi.c	/^int	ft_atoi(const char *str)$/
+ft_atol	../libft/src/str_fn/ft_atol.c	/^long	ft_atol(const char *str)$/
+ft_bzero	../libft/src/mem_fn/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/
+ft_calloc	../libft/src/mem_fn/ft_calloc.c	/^void	*ft_calloc(size_t count, size_t size)$/
+ft_cat_path_cmd	../src/path_and_cmd_extraction.c	/^char	*ft_cat_path_cmd(char **path, char *cmd)$/
+ft_check_argc	../src/utils_check_files.c	/^int	ft_check_argc(int argc)$/
+ft_check_if_cmd_is_executable	../src/utils_check_files.c	/^int	ft_check_if_cmd_is_executable(char *arg)$/
+ft_check_valid_files	../src/utils_check_files.c	/^int	ft_check_valid_files(char *infile, char *outfi/
+ft_close_pipes	../src/utils_cleanup.c	/^void	ft_close_pipes(t_context *context)$/
+ft_count_strs	../libft/src/str_fn/ft_split.c	/^static size_t	ft_count_strs(const char *s, char c)/
+ft_divide_stash	../libft/src/get_next_line/get_next_line.c	/^char	*ft_divide_stash(char **stash)$/
+ft_duplicate_fds	../src/utils_redirection.c	/^void	ft_duplicate_fds(t_context *context)$/
+ft_execute_child	../src/pipex.c	/^void	ft_execute_child(t_context *context)$/
+ft_extract_line	../libft/src/get_next_line/get_next_line_utils.c	/^char	*ft_extract_line(char *stash)$/
+ft_fill_strs	../libft/src/str_fn/ft_split.c	/^static char	**ft_fill_strs(const char *s, char c,$/
+ft_find_executable	../src/path_and_cmd_extraction.c	/^void	ft_find_executable(t_context *context)$/
+ft_findlen	../libft/src/str_fn/ft_itoa.c	/^static int	ft_findlen(int n)$/
+ft_free_and_null	../libft/src/get_next_line/get_next_line_utils.c	/^char	*ft_free_and_null(char **str)$/
+ft_free_null	../src/utils_cleanup.c	/^void	ft_free_null(char *ptr)$/
+ft_free_null_strv	../src/utils_cleanup.c	/^void	ft_free_null_strv(char **strv)$/
+ft_get_next_line	../libft/src/get_next_line/get_next_line.c	/^char	*ft_get_next_line(int fd)$/
+ft_get_path	../src/prepare_context.c	/^char	**ft_get_path(char **envp)$/
+ft_getlen	../libft/src/printf/ft_printf_utils.c	/^int	ft_getlen(char *s)$/
+ft_initialise_context	../src/prepare_context.c	/^t_context	ft_initialise_context(int argc, char **a/
+ft_is_a_space	../libft/src/str_fn/ft_atoi.c	/^int	ft_is_a_space(char c)$/
+ft_is_negative	../libft/src/str_fn/ft_itoa.c	/^static unsigned int	ft_is_negative(int n)$/
+ft_is_sep	../libft/src/str_fn/ft_split.c	/^static int	ft_is_sep(char c, char sep)$/
+ft_isalnum	../libft/src/str_fn/ft_isalnum.c	/^int	ft_isalnum(int c)$/
+ft_isalpha	../libft/src/str_fn/ft_isalpha.c	/^int	ft_isalpha(int c)$/
+ft_isascii	../libft/src/str_fn/ft_isascii.c	/^int	ft_isascii(int c)$/
+ft_isdigit	../libft/src/str_fn/ft_isdigit.c	/^int	ft_isdigit(int c)$/
+ft_isprint	../libft/src/str_fn/ft_isprint.c	/^int	ft_isprint(int c)$/
+ft_isquote	../libft/src/str_fn/ft_isquote.c	/^int	ft_isquote(int c)$/
+ft_isspace	../libft/src/str_fn/ft_isspace.c	/^int	ft_isspace(int c)$/
+ft_itoa	../libft/src/str_fn/ft_itoa.c	/^char	*ft_itoa(int n)$/
+ft_join_stash_buff	../libft/src/get_next_line/get_next_line.c	/^char	*ft_join_stash_buff(char *stash, char *buf, s/
+ft_len_strsep	../libft/src/str_fn/ft_split.c	/^static size_t	ft_len_strsep(const char *s, char c)/
+ft_lstadd_back	../libft/src/list_fn/ft_lstadd_back_bonus.c	/^void	ft_lstadd_back(t_list **lst, t_list *new)$/
+ft_lstadd_front	../libft/src/list_fn/ft_lstadd_front_bonus.c	/^void	ft_lstadd_front(t_list **lst, t_list *new)$/
+ft_lstclear	../libft/src/list_fn/ft_lstclear_bonus.c	/^void	ft_lstclear(t_list **lst, void (*del)(void *)/
+ft_lstdelone	../libft/src/list_fn/ft_lstdelone_bonus.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void *)/
+ft_lstiter	../libft/src/list_fn/ft_lstiter_bonus.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/
+ft_lstlast	../libft/src/list_fn/ft_lstlast_bonus.c	/^t_list	*ft_lstlast(t_list *lst)$/
+ft_lstmap	../libft/src/list_fn/ft_lstmap_bonus.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),/
+ft_lstnew	../libft/src/list_fn/ft_lstnew_bonus.c	/^t_list	*ft_lstnew(void *content)$/
+ft_lstsize	../libft/src/list_fn/ft_lstsize_bonus.c	/^int	ft_lstsize(t_list *lst)$/
+ft_memchr	../libft/src/mem_fn/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/
+ft_memcmp	../libft/src/mem_fn/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size/
+ft_memcpy	../libft/src/mem_fn/ft_memcpy.c	/^void	*ft_memcpy(void *dst, const void *src, size_t/
+ft_memmove	../libft/src/mem_fn/ft_memmove.c	/^void	*ft_memmove(void *dst, const void *src, size_/
+ft_memset	../libft/src/mem_fn/ft_memset.c	/^void	*ft_memset(void *b, int c, size_t len)$/
+ft_open_file	../src/utils_redirection.c	/^int	ft_open_file(char *file, int mode)$/
+ft_parse_arg	../libft/src/printf/ft_printf.c	/^int	ft_parse_arg(char c, va_list *arg)$/
+ft_parse_cmd	../src/path_and_cmd_extraction.c	/^char	**ft_parse_cmd(char *arg)$/
+ft_parse_quotes	../src/path_and_cmd_extraction.c	/^void	ft_parse_quotes(char *str)$/
+ft_perror_exit	../src/utils_cleanup.c	/^int	ft_perror_exit(char *error, int my_errno, int /
+ft_pipex	../src/pipex.c	/^void	ft_pipex(t_context *context)$/
+ft_prepare_pipe	../src/pipex.c	/^void	ft_prepare_pipe(t_context *context)$/
+ft_prepend_path_cmd	../src/path_and_cmd_extraction.c	/^char	*ft_prepend_path_cmd(char **path, char *cmd)$/
+ft_print_char	../libft/src/printf/ft_printf_utils.c	/^int	ft_print_char(char c)$/
+ft_print_nbr_base	../libft/src/str_fn/ft_print_nbr.c	/^int	ft_print_nbr_base(int n, char *base)$/
+ft_print_neg_nbr	../libft/src/str_fn/ft_print_nbr.c	/^int	ft_print_neg_nbr(int n, char *base)$/
+ft_print_ptr	../libft/src/str_fn/ft_print_ptr.c	/^int	ft_print_ptr(unsigned long long n)$/
+ft_print_ptr_base	../libft/src/str_fn/ft_print_ptr.c	/^int	ft_print_ptr_base(unsigned long long n, char */
+ft_print_string	../libft/src/printf/ft_printf_utils.c	/^int	ft_print_string(char *s)$/
+ft_print_strv	../libft/src/str_fn/ft_print_strv.c	/^void	ft_print_strv(char **strv)$/
+ft_print_unsigned_nbr_base	../libft/src/str_fn/ft_print_nbr.c	/^int	ft_print_unsigned_nbr_base(unsigned int n, cha/
+ft_printf	../libft/src/printf/ft_printf.c	/^int	ft_printf(const char *format, ...)$/
+ft_putchar_fd	../libft/src/str_fn/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/
+ft_putendl_fd	../libft/src/str_fn/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/
+ft_putnbr_fd	../libft/src/str_fn/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/
+ft_putstr_fd	../libft/src/str_fn/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/
+ft_read_file	../libft/src/get_next_line/get_next_line.c	/^char	*ft_read_file(int fd, char **stash)$/
+ft_redirection_first_child	../src/setup_redirection.c	/^void	ft_redirection_first_child(t_context *context/
+ft_redirection_last_child	../src/setup_redirection.c	/^void	ft_redirection_last_child(t_context *context)/
+ft_setup_redirection	../src/setup_redirection.c	/^void	ft_setup_redirection(t_context *context)$/
+ft_split	../libft/src/str_fn/ft_split.c	/^char	**ft_split(char const *s, char c)$/
+ft_strchr	../libft/src/str_fn/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/
+ft_strcmp	../libft/src/str_fn/ft_strcmp.c	/^int	ft_strcmp(const char *s1, const char *s2)$/
+ft_strdup	../libft/src/str_fn/ft_strdup.c	/^char	*ft_strdup(const char *s1)$/
+ft_striteri	../libft/src/str_fn/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, /
+ft_strjoin	../libft/src/str_fn/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/
+ft_strlcat	../libft/src/str_fn/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size/
+ft_strlcpy	../libft/src/str_fn/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dst, const char *src, size/
+ft_strlen	../libft/src/str_fn/ft_strlen.c	/^size_t	ft_strlen(const char *s)$/
+ft_strmapi	../libft/src/str_fn/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f) (unsigne/
+ft_strncmp	../libft/src/str_fn/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, siz/
+ft_strnstr	../libft/src/str_fn/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char /
+ft_strrchr	../libft/src/str_fn/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/
+ft_strtrim	../libft/src/str_fn/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/
+ft_substr	../libft/src/str_fn/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start,/
+ft_tolower	../libft/src/str_fn/ft_tolower.c	/^int	ft_tolower(int c)$/
+ft_toupper	../libft/src/str_fn/ft_toupper.c	/^int	ft_toupper(int c)$/
+ft_trim_stash	../libft/src/get_next_line/get_next_line_utils.c	/^char	*ft_trim_stash(char *stash, char *start)$/
+ft_wait_for_all_children	../src/utils_cleanup.c	/^void	ft_wait_for_all_children(t_context *context)$/
+t_context	../includes/pipex.h	/^}				t_context;$/
+t_context	../includes/pipex_bonus.h	/^}				t_context;$/
+t_list	../libft/includes/libft.h	/^}					t_list;$/
