@@ -12,31 +12,6 @@
 
 #include "pipex.h"
 
-void	ft_wait_for_all_children(t_context *context)
-{
-	int	n;
-
-	n = 0;
-	while (n < context->nb_of_cmds)
-	{
-		wait(NULL);
-		n++;
-	}
-}
-
-void	ft_close_pipes(t_context *context)
-{
-	int	n;
-
-	n = 0;
-	while (n < (context->nb_of_pipes * 2))
-	{
-		close(context->pipes_fd[n]);
-		n++;
-	}
-	free(context->pipes_fd);
-}
-
 void	ft_free_null(char *ptr)
 {
 	free(ptr);
@@ -60,4 +35,29 @@ int	ft_perror_exit(char *error, int my_errno, int errnb)
 		errno = my_errno;
 	perror(error);
 	exit(errnb);
+}
+
+void	ft_wait_for_all_children(t_context *context)
+{
+	int	n;
+
+	n = 0;
+	while (n < context->nb_of_cmds)
+	{
+		wait(NULL);
+		n++;
+	}
+}
+
+void	ft_close_pipes(t_context *context)
+{
+	int	n;
+
+	n = 0;
+	while (n < (context->nb_of_pipes * 2))
+	{
+		close(context->pipes_fd[n]);
+		n++;
+	}
+	free(context->pipes_fd);
 }
