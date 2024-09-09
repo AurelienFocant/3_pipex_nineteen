@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:58:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/30 12:01:13 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/09 14:26:49 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_get_path(char **envp)
 	{
 		if (ft_strncmp(*envp, "PATH=", path_prefix) == EXIT_SUCCESS)
 		{
-			path = (ft_split(*envp + path_prefix, ':'));
+			path = (ft_split((*envp + path_prefix), ':'));
 			if (!path)
 				ft_perror_exit("Error parsing path", ENOENT, 3);
 			return (path);
