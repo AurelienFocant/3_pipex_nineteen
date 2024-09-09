@@ -2,7 +2,8 @@
 
 *.swp
 
-pipex*
+pipex
+pipex_bonus
 *obj*/
 *.a
 
