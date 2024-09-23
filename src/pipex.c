@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 22:25:55 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/23 13:29:02 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/23 18:37:13 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	ft_pipex(t_context *context)
 			ft_perror_exit("Fork failed", errno, 6);
 		if (pid == CHILD)
 		{
+			errno = 0;
 			context->curr_cmd_nb = curr_cmd_nb;
 			ft_setup_redirection(context);
 			ft_close_pipes(context);
