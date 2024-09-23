@@ -15,6 +15,7 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_context	context;
+	//this is a comment
 
 	if (!ft_check_argc(argc))
 		ft_perror_exit("Invalid number of arguments", EINVAL, 1);

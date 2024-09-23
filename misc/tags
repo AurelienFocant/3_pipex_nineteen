@@ -1,11 +1,9 @@
 APPEND	../includes/pipex.h	/^#define APPEND		2$/
 APPEND	../includes/pipex_bonus.h	/^#define APPEND		2$/
-BUFFER_SIZE	../libft/includes/get_next_line.h	/^#  define BUFFER_SIZE 42$/
 CHILD	../includes/pipex.h	/^#define CHILD	0$/
 CHILD	../includes/pipex_bonus.h	/^#define CHILD	0$/
 FALSE	../includes/pipex.h	/^#define FALSE	0$/
 FALSE	../includes/pipex_bonus.h	/^#define FALSE	0$/
-FD_MAX	../libft/includes/get_next_line.h	/^#  define FD_MAX 256$/
 FT_PRINTF_H	../libft/includes/ft_printf.h	/^#define FT_PRINTF_H$/
 GET_NEXT_LINE_H	../libft/includes/get_next_line.h	/^#define GET_NEXT_LINE_H$/
 IO_FILES	../includes/pipex.h	/^#define IO_FILES	2 $/
@@ -42,8 +40,9 @@ ft_find_executable	../src/path_and_cmd_extraction.c	/^void	ft_find_executable(t_
 ft_find_full_path	../src/path_and_cmd_extraction.c	/^char	*ft_find_full_path(char **path, char *cmd)$/
 ft_findlen	../libft/src/str_fn/ft_itoa.c	/^static int	ft_findlen(int n)$/
 ft_free_and_null	../libft/src/get_next_line/get_next_line_utils.c	/^char	*ft_free_and_null(char **str)$/
-ft_free_null	../src/utils_cleanup.c	/^void	ft_free_null(char *ptr)$/
-ft_free_null_strv	../src/utils_cleanup.c	/^void	ft_free_null_strv(char **strv)$/
+ft_free_null	../libft/src/mem_fn/ft_free_null.c	/^void	ft_free_null(void **ptr)$/
+ft_free_null_strv	../libft/src/mem_fn/ft_free_null_strv.c	/^void	ft_free_null_strv(char ***strv)$/
+ft_free_strv	../libft/src/mem_fn/ft_free_strv.c	/^void	ft_free_strv(char **strv)$/
 ft_get_next_line	../libft/src/get_next_line/get_next_line.c	/^char	*ft_get_next_line(int fd)$/
 ft_get_path	../src/prepare_context.c	/^char	**ft_get_path(char **envp)$/
 ft_getlen	../libft/src/printf/ft_printf_utils.c	/^int	ft_getlen(char *s)$/

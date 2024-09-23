@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 00:56:17 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/27 01:01:56 by afocant          ###   ########.fr       */
+/*   Created: 2024/09/23 12:35:28 by afocant           #+#    #+#             */
+/*   Updated: 2024/09/23 12:35:40 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_context	context;
-	//this is a comment
 
 	if (!ft_check_argc(argc))
 		ft_perror_exit("Invalid number of arguments", EINVAL, 1);

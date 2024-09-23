@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 22:25:55 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/27 01:00:55 by afocant          ###   ########.fr       */
+/*   Created: 2024/09/23 12:38:50 by afocant           #+#    #+#             */
+/*   Updated: 2024/09/23 13:42:24 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,26 @@
 void	ft_execute_child(t_context *context)
 {
 	execve(context->executable, context->cmd, context->envp);
-	ft_free_null(context->executable);
-	ft_free_null_strv(context->path);
+	ft_free_null((void **) &(context->executable));
+	ft_free_null_strv(&(context->path));
+	ft_free_null_strv(&(context->cmd));
 	ft_perror_exit("Execve has failed", errno, 12);
+}
+
+void	ft_prepare_pipe(t_context *context)
+{
+	int	n;
+
+	context->pipes_fd = malloc(sizeof(int) * (context->nb_of_pipes * 2));
+	if (context->pipes_fd == NULL)
+		ft_perror_exit("Malloc on pipe array has failed", errno, 4);
+	n = 0;
+	while (n < context->nb_of_pipes * 2)
+	{
+		if (pipe(context->pipes_fd + n) == -1)
+			ft_perror_exit("Pipe creation has failed", errno, 5);
+		n += 2;
+	}
 }
 
 void	ft_pipex(t_context *context)
@@ -44,23 +61,5 @@ void	ft_pipex(t_context *context)
 	}
 	ft_close_pipes(context);
 	ft_wait_for_all_children(context);
-	ft_free_null_strv(context->path);
-	if (context->heredoc)
-		unlink(".heredoc.tmp");
-}
-
-void	ft_prepare_pipe(t_context *context)
-{
-	int	n;
-
-	context->pipes_fd = malloc(sizeof(int) * (context->nb_of_pipes * 2));
-	if (context->pipes_fd == NULL)
-		ft_perror_exit("Malloc on pipe array has failed", errno, 4);
-	n = 0;
-	while (n < context->nb_of_pipes * 2)
-	{
-		if (pipe(context->pipes_fd + n) == -1)
-			ft_perror_exit("Pipe creation has failed", errno, 5);
-		n += 2;
-	}
+	ft_free_null_strv(&(context->path));
 }

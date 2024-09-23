@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:56:31 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/29 17:44:52 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/23 13:37:11 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 		{
 			if (errno == EACCES)
 				permission_denied = TRUE;
-			ft_free_null(res);
+			ft_free_null((void **) &res);
 			path++;
 		}
 	}

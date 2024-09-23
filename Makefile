@@ -67,7 +67,7 @@ libre: libclean lib
 .PHONY: all bonus lib libre clean fclean libclean ffclean re
 #---------------------------------------------------------#
 SRC_DIR_BONUS		=	src_bonus
-SRC_BONUS			=	src_bonus/utils_redirection_bonus.c src_bonus/prepare_context_bonus.c src_bonus/utils_check_files_bonus.c src_bonus/setup_redirection_bonus.c src_bonus/utils_cleanup_bonus.c src_bonus/path_and_cmd_extraction_bonus.c src_bonus/main_bonus.c src_bonus/pipex_bonus.c
+SRC_BONUS			=	src_bonus/main_bonus.c src_bonus/parsing_cmd_bonus.c src_bonus/path_and_cmd_extraction_bonus.c src_bonus/pipex_bonus.c src_bonus/prepare_context_bonus.c src_bonus/setup_redirection_bonus.c src_bonus/utils_check_files_bonus.c src_bonus/utils_cleanup_bonus.c src_bonus/utils_redirection_bonus.c 
 
 OBJ_DIR_BONUS		=	obj_bonus
 OBJ_BONUS			=	$(patsubst $(SRC_DIR_BONUS)/%.c, $(OBJ_DIR_BONUS)/%.o, $(SRC_BONUS))

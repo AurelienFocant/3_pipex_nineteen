@@ -6,28 +6,11 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 00:59:13 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/28 14:24:01 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/23 13:17:08 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	ft_free_null(void *ptr)
-{
-	free(ptr);
-	ptr = NULL;
-}
-
-void	ft_free_null_strv(char **strv)
-{
-	size_t	i;
-
-	i = 0;
-	while (strv && strv[i])
-		ft_free_null(strv[i++]);
-	free(strv);
-	strv = NULL;
-}
 
 void	ft_print_error(char *error_msg, char *str_error)
 {

@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 22:25:55 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/05 15:37:47 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/23 13:29:02 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_execute_child(t_context *context)
 {
 	execve(context->executable, context->cmd, context->envp);
-	ft_free_null(context->executable);
-	ft_free_null_strv(context->path);
-	ft_free_null_strv(context->cmd);
+	ft_free_null((void **) context->executable);
+	ft_free_strv(context->path);
+	ft_free_strv(context->cmd);
 	ft_perror_exit("Execve has failed", errno, 12);
 }
 
@@ -61,5 +61,5 @@ void	ft_pipex(t_context *context)
 	}
 	ft_close_pipes(context);
 	ft_wait_for_all_children(context);
-	ft_free_null_strv(context->path);
+	ft_free_strv((context->path));
 }

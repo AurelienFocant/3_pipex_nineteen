@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_and_cmd_extraction.c                          :+:      :+:    :+:   */
+/*   path_and_cmd_extraction_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 00:56:31 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/29 15:32:42 by afocant          ###   ########.fr       */
+/*   Created: 2024/09/23 12:36:44 by afocant           #+#    #+#             */
+/*   Updated: 2024/09/23 13:50:55 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ char	*ft_cat_path_cmd(char **path, char *cmd)
 char	*ft_prepend_path_cmd(char **path, char *cmd)
 {
 	char	*res;
+	int		permission_denied;
 
-	if (ft_check_if_cmd_is_executable(cmd))
-		return (ft_strdup(cmd));
+	permission_denied = FALSE;
 	while (path && *path)
 	{
 		res = ft_cat_path_cmd(path, cmd);
@@ -46,46 +46,30 @@ char	*ft_prepend_path_cmd(char **path, char *cmd)
 			return (NULL);
 		if (ft_check_if_cmd_is_executable(res))
 			return (res);
-		ft_free_null(res);
-		path++;
+		else
+		{
+			if (errno == EACCES)
+				permission_denied = TRUE;
+			ft_free_null((void **) &res);
+			path++;
+		}
 	}
+	if (permission_denied)
+		errno = EACCES;
 	return (NULL);
 }
 
-void	ft_parse_quotes(char *str)
+char	*ft_find_full_path(char **path, char *cmd)
 {
-	unsigned int	i;
-	unsigned char	bell;
-
-	bell = 007;
-	i = 0;
-	while (str[i])
+	if (ft_strchr(cmd, '/'))
 	{
-		if (ft_isspace(str[i]))
-			str[i] = bell;
-		if (ft_isquote(str[i]))
-		{
-			if (str[i - 1] != '\\')
-				str[i] = bell;
-			while (str[i] && !ft_isquote(str[i]))
-				i++;
-			if (ft_isquote(str[i]))
-				if (str[i - 1] != '\\')
-					str[i] = bell;
-		}
-		i++;
+		if (ft_check_if_cmd_is_executable(cmd))
+			return (ft_strdup(cmd));
+		else
+			return (NULL);
 	}
-}
-
-char	**ft_parse_cmd(char *arg)
-{
-	char			**split_cmd;
-
-	ft_parse_quotes(arg);
-	split_cmd = ft_split(arg, 007);
-	if (!split_cmd)
-		return (NULL);
-	return (split_cmd);
+	else
+		return (ft_prepend_path_cmd(path, cmd));
 }
 
 void	ft_find_executable(t_context *context)
@@ -95,8 +79,8 @@ void	ft_find_executable(t_context *context)
 	curr_cmd = context->curr_cmd_nb + 2 + context->heredoc;
 	context->cmd = ft_parse_cmd(context->argv[curr_cmd]);
 	if (!context->cmd || !*(context->cmd))
-		ft_perror_exit("Can't find executable", ENOENT, 10);
-	context->executable = ft_prepend_path_cmd(context->path, context->cmd[0]);
+		ft_cmd_perror("Error parsing executable", ENOENT, 10);
+	context->executable = ft_find_full_path(context->path, context->cmd[0]);
 	if (!context->executable)
-		ft_perror_exit("Can't find executable", ENOENT, 11);
+		ft_cmd_perror(context->cmd[0], ENOENT, 11);
 }

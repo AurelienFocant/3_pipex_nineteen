@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 01:13:18 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/30 11:49:32 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/23 14:05:53 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ int			ft_check_valid_files(char *infile, char *outfile);
 /*----------------  utils_cleanup.c  ---------------*/
 void		ft_wait_for_all_children(t_context *context);
 void		ft_close_pipes(t_context *context);
-void		ft_free_null(void *ptr);
-void		ft_free_null_strv(char **strv);
+int			ft_cmd_perror(char *error_msg, int my_errno, int exitcode);
 int			ft_perror_exit(char *error, int my_errno, int exitcode);
 int			ft_cmd_perror(char *error_msg, int my_errno, int exitcode);
 

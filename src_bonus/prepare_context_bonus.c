@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prepare_context.c                                  :+:      :+:    :+:   */
+/*   prepare_context_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 00:58:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/30 12:01:16 by afocant          ###   ########.fr       */
+/*   Created: 2024/09/23 12:39:35 by afocant           #+#    #+#             */
+/*   Updated: 2024/09/23 12:40:49 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,17 @@ int	ft_check_heredoc(int argc, char **argv)
 
 char	**ft_get_path(char **envp)
 {
-	char	**env;
+	size_t	path_prefix;
 	char	**path;
 
+	path_prefix = ft_strlen("PATH=");
 	while (*envp)
 	{
-		if (ft_strncmp(*envp, "PATH=", ft_strlen("PATH=")) == 0)
+		if (ft_strncmp(*envp, "PATH=", path_prefix) == EXIT_SUCCESS)
 		{
-			env = ft_split(*envp, '=');
-			if (!env)
-				ft_perror_exit("Error parsing env", ENOENT, 2);
-			path = (ft_split(env[1], ':'));
+			path = (ft_split((*envp + path_prefix), ':'));
 			if (!path)
 				ft_perror_exit("Error parsing path", ENOENT, 3);
-			ft_free_null_strv(env);
 			return (path);
 		}
 		envp++;
