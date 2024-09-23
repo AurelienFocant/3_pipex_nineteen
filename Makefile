@@ -37,11 +37,9 @@ all:			$(NAME)
 $(NAME):		$(OBJ) $(LIBFT_DIR)/$(LIBFT)
 	$(LINKER) $(LIB_FLAGS) $(OBJ) -o $@
 
-$(OBJ): 		$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(@D)
 	$(COMPILER) $(INC_FLAGS) -c $< -o $@ 
-
-$(OBJ_DIR):
-	@mkdir -p $@
 
 lib:			$(LIBFT_DIR)/$(LIBFT)
 $(LIBFT_DIR)/$(LIBFT):
@@ -80,9 +78,7 @@ bonus:				$(BONUS)
 $(BONUS):			$(OBJ_BONUS) $(LIBFT_DIR)/$(LIBFT)
 	$(LINKER) $(OBJ_BONUS) $(LIB_FLAGS) -o $@
 
-$(OBJ_BONUS):		$(OBJ_DIR_BONUS)/%.o: $(SRC_DIR_BONUS)/%.c | $(OBJ_DIR_BONUS)
+$(OBJ_DIR_BONUS)/%.o: $(SRC_DIR_BONUS)/%.c
+	@mkdir -p $(@D)
 	$(COMPILER) $(INC_FLAGS) -c $< -o $@ 
-
-$(OBJ_DIR_BONUS):
-	@mkdir -p $@
 #---------------------------------------------------------#
