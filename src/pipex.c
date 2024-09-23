@@ -16,8 +16,8 @@ void	ft_execute_child(t_context *context)
 {
 	execve(context->executable, context->cmd, context->envp);
 	ft_free_null((void **) context->executable);
-	ft_free_strv(context->path);
-	ft_free_strv(context->cmd);
+	ft_free_null_strv(&(context->path));
+	ft_free_null_strv(&(context->cmd));
 	ft_perror_exit("Execve has failed", errno, 12);
 }
 
@@ -37,6 +37,16 @@ void	ft_prepare_pipe(t_context *context)
 	}
 }
 
+pid_t	sys_fork(void)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+		ft_perror_exit("Fork failed", errno, 6);
+	return (pid);
+}
+
 void	ft_pipex(t_context *context)
 {
 	int		curr_cmd_nb;
@@ -46,12 +56,10 @@ void	ft_pipex(t_context *context)
 	curr_cmd_nb = 0;
 	while (curr_cmd_nb < context->nb_of_cmds)
 	{
-		pid = fork();
-		if (pid == -1)
-			ft_perror_exit("Fork failed", errno, 6);
+		pid = sys_fork();
 		if (pid == CHILD)
 		{
-			errno = 0;
+			errno = EXIT_SUCCESS;
 			context->curr_cmd_nb = curr_cmd_nb;
 			ft_setup_redirection(context);
 			ft_close_pipes(context);
@@ -62,5 +70,5 @@ void	ft_pipex(t_context *context)
 	}
 	ft_close_pipes(context);
 	ft_wait_for_all_children(context);
-	ft_free_strv((context->path));
+	ft_free_null_strv((&context->path));
 }

@@ -54,6 +54,7 @@ typedef struct s_context
 /*----------------  pipex.c  ---------------*/
 void		ft_execute_child(t_context *context);
 void		ft_pipex(t_context *context);
+pid_t		sys_fork(void);
 void		ft_prepare_pipe(t_context *context);
 
 /*----------------  prepare_context.c  ---------------*/

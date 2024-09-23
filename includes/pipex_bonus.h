@@ -64,8 +64,9 @@ void		ft_find_executable(t_context *context);
 
 /*----------------  pipex_bonus.c  ---------------*/
 void		ft_execute_child(t_context *context);
-void		ft_prepare_pipe(t_context *context);
+pid_t		sys_fork(void);
 void		ft_pipex(t_context *context);
+void		ft_prepare_pipe(t_context *context);
 
 /*----------------  prepare_context_bonus.c  ---------------*/
 int			ft_check_heredoc(int argc, char **argv);
