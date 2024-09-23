@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:44:26 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/23 12:44:58 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/23 14:47:40 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int	ft_open_file(char *file, int mode)
 	return (fd);
 }
 
-int	ft_create_heredoc(t_context *context)
+int	ft_prepare_heredoc(t_context *context)
 {
 	char	*delimiter;
 	int		fd;
 	char	*line;
 
+	if (!context->heredoc)
+		return (-1);
 	delimiter = ft_strjoin(context->argv[2], "\n");
 	if (!delimiter)
 		ft_perror_exit("Malloc of here_doc delimiter has failed", ENOENT, 123);
@@ -48,8 +50,13 @@ int	ft_create_heredoc(t_context *context)
 	}
 	free(delimiter);
 	close(fd);
-	fd = ft_open_file(".heredoc.tmp", READ);
 	return (fd);
+}
+
+void	ft_close_heredoc(t_context *context)
+{
+	if (context->heredoc)
+		unlink (".heredoc.tmp");
 }
 
 void	ft_duplicate_fds(t_context *context)

@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:42:00 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/23 13:48:55 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/23 14:34:23 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	ft_redirection_first_child(t_context *context)
 	char	*infile;
 	int		pipe_out;
 
-	infile = context->argv[1];
+	if (context->heredoc)
+		infile = ".heredoc.tmp";
+	else
+		infile = context->argv[1];
 	pipe_out = (context->curr_cmd_nb * 2 + 1);
 	context->files_fd[STDOUT_FILENO] = context->pipes_fd[pipe_out];
-	if (context->heredoc)
-		context->files_fd[STDIN_FILENO] = ft_create_heredoc(context);
-	else
-		context->files_fd[STDIN_FILENO] = ft_open_file(infile, READ);
+	context->files_fd[STDIN_FILENO] = ft_open_file(infile, READ);
 	ft_duplicate_fds(context);
 	close(context->files_fd[STDIN_FILENO]);
 }

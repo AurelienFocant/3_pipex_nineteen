@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:38:50 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/23 13:42:24 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/23 14:41:34 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_pipex(t_context *context)
 	int		curr_cmd_nb;
 	pid_t	pid;
 
+	ft_prepare_heredoc(context);
 	ft_prepare_pipe(context);
 	curr_cmd_nb = 0;
 	while (curr_cmd_nb < context->nb_of_cmds)
@@ -62,4 +63,5 @@ void	ft_pipex(t_context *context)
 	ft_close_pipes(context);
 	ft_wait_for_all_children(context);
 	ft_free_null_strv(&(context->path));
+	ft_close_heredoc(context);
 }
