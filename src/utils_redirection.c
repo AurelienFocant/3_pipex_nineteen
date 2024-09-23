@@ -22,7 +22,7 @@ int	ft_open_file(char *file, int mode)
 	else if (mode == WRITE)
 		fd = open(file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (fd == -1)
-		ft_perror_exit("Error opening file", errno, 7);
+		ft_perror_exit(file, errno, 7);
 	return (fd);
 }
 

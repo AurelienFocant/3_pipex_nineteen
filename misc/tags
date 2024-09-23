@@ -31,6 +31,7 @@ ft_check_argc	../src/utils_check_files.c	/^int	ft_check_argc(int argc)$/
 ft_check_if_cmd_is_executable	../src/utils_check_files.c	/^int	ft_check_if_cmd_is_executable(char *arg)$/
 ft_check_valid_files	../src/utils_check_files.c	/^int	ft_check_valid_files(char *infile, char *outfi/
 ft_close_pipes	../src/utils_cleanup.c	/^void	ft_close_pipes(t_context *context)$/
+ft_cmd_perror	../src/utils_cleanup.c	/^int	ft_cmd_perror(char *error_msg, int my_errno, i/
 ft_count_strs	../libft/src/str_fn/ft_split.c	/^static size_t	ft_count_strs(const char *s, char c)/
 ft_divide_stash	../libft/src/get_next_line/get_next_line.c	/^char	*ft_divide_stash(char **stash)$/
 ft_duplicate_fds	../src/utils_redirection.c	/^void	ft_duplicate_fds(t_context *context)$/
@@ -38,6 +39,7 @@ ft_execute_child	../src/pipex.c	/^void	ft_execute_child(t_context *context)$/
 ft_extract_line	../libft/src/get_next_line/get_next_line_utils.c	/^char	*ft_extract_line(char *stash)$/
 ft_fill_strs	../libft/src/str_fn/ft_split.c	/^static char	**ft_fill_strs(const char *s, char c,$/
 ft_find_executable	../src/path_and_cmd_extraction.c	/^void	ft_find_executable(t_context *context)$/
+ft_find_full_path	../src/path_and_cmd_extraction.c	/^char	*ft_find_full_path(char **path, char *cmd)$/
 ft_findlen	../libft/src/str_fn/ft_itoa.c	/^static int	ft_findlen(int n)$/
 ft_free_and_null	../libft/src/get_next_line/get_next_line_utils.c	/^char	*ft_free_and_null(char **str)$/
 ft_free_null	../src/utils_cleanup.c	/^void	ft_free_null(char *ptr)$/
@@ -75,13 +77,14 @@ ft_memmove	../libft/src/mem_fn/ft_memmove.c	/^void	*ft_memmove(void *dst, const 
 ft_memset	../libft/src/mem_fn/ft_memset.c	/^void	*ft_memset(void *b, int c, size_t len)$/
 ft_open_file	../src/utils_redirection.c	/^int	ft_open_file(char *file, int mode)$/
 ft_parse_arg	../libft/src/printf/ft_printf.c	/^int	ft_parse_arg(char c, va_list *arg)$/
-ft_parse_cmd	../src/path_and_cmd_extraction.c	/^char	**ft_parse_cmd(char *arg)$/
-ft_parse_quotes	../src/path_and_cmd_extraction.c	/^void	ft_parse_quotes(char *str)$/
+ft_parse_cmd	../src/parsing_cmd.c	/^char	**ft_parse_cmd(char *arg)$/
+ft_parse_quotes	../src/parsing_cmd.c	/^void	ft_parse_quotes(char *str)$/
 ft_perror_exit	../src/utils_cleanup.c	/^int	ft_perror_exit(char *error, int my_errno, int /
 ft_pipex	../src/pipex.c	/^void	ft_pipex(t_context *context)$/
 ft_prepare_pipe	../src/pipex.c	/^void	ft_prepare_pipe(t_context *context)$/
 ft_prepend_path_cmd	../src/path_and_cmd_extraction.c	/^char	*ft_prepend_path_cmd(char **path, char *cmd)$/
 ft_print_char	../libft/src/printf/ft_printf_utils.c	/^int	ft_print_char(char c)$/
+ft_print_error	../src/utils_cleanup.c	/^void	ft_print_error(char *error_msg, char *str_err/
 ft_print_nbr_base	../libft/src/str_fn/ft_print_nbr.c	/^int	ft_print_nbr_base(int n, char *base)$/
 ft_print_neg_nbr	../libft/src/str_fn/ft_print_nbr.c	/^int	ft_print_neg_nbr(int n, char *base)$/
 ft_print_ptr	../libft/src/str_fn/ft_print_ptr.c	/^int	ft_print_ptr(unsigned long long n)$/

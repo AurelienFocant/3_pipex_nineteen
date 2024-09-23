@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdio.h>
+# include <string.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <errno.h>
@@ -64,9 +65,11 @@ t_context	ft_initialise_context(int argc, char **argv, char **envp);
 /*----------------  path_and_cmd_extraction.c  ---------------*/
 char		*ft_cat_path_cmd(char **path, char *cmd);
 char		*ft_prepend_path_cmd(char **path, char *cmd);
+void		ft_find_executable(t_context *context);
+
+/*----------------  parsing_cmd.c  ---------------*/
 void		ft_parse_quotes(char *str);
 char		**ft_parse_cmd(char *arg);
-void		ft_find_executable(t_context *context);
 
 /*----------------  setup_redirection.c  ---------------*/
 void		ft_redirection_first_child(t_context *context);

@@ -17,6 +17,7 @@ void	ft_execute_child(t_context *context)
 	execve(context->executable, context->cmd, context->envp);
 	ft_free_null(context->executable);
 	ft_free_null_strv(context->path);
+	ft_free_null_strv(context->cmd);
 	ft_perror_exit("Execve has failed", errno, 12);
 }
 

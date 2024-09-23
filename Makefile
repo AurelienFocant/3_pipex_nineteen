@@ -11,7 +11,7 @@ COMPILER		=	$(CC) $(CFLAGS) $(GFLAGS)
 LINKER			=	$(CC) $(LNKFLAGS) $(CFLAGS) $(GFLAGS)
 #---------------------------------------------------------#
 SRC_DIR			=	src
-SRC				=	src/main.c src/path_and_cmd_extraction.c src/pipex.c src/prepare_context.c src/setup_redirection.c src/utils_check_files.c src/utils_cleanup.c src/utils_redirection.c 
+SRC				=	src/main.c src/path_and_cmd_extraction.c src/parsing_cmd.c src/pipex.c src/prepare_context.c src/setup_redirection.c src/utils_check_files.c src/utils_cleanup.c src/utils_redirection.c 
 
 OBJ_DIR			=	obj
 OBJ				=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
