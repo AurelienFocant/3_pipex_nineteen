@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:44:26 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/23 14:47:40 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/24 20:43:57 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	ft_prepare_heredoc(t_context *context)
 	{
 		ft_putstr_fd("pipe heredoc> ", STDOUT_FILENO);
 		ft_putstr_fd(line, fd);
+		free(line);
 		line = ft_get_next_line(STDIN_FILENO);
 	}
 	free(delimiter);
