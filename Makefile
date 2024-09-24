@@ -16,7 +16,7 @@ SRC				=	src/main.c src/path_and_cmd_extraction.c src/parsing_cmd.c src/pipex.c 
 OBJ_DIR			=	obj
 OBJ				=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 #---------------------------------------------------------#
-INC_DIR			=	includes
+INC_DIR			=	include
 INC_FLAGS		=	-I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
 
 CPU				=	$(shell uname -p)
