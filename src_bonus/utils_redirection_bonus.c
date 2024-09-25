@@ -49,6 +49,7 @@ int	ft_prepare_heredoc(t_context *context)
 		free(line);
 		line = ft_get_next_line(STDIN_FILENO);
 	}
+	free(line);
 	free(delimiter);
 	close(fd);
 	return (fd);
