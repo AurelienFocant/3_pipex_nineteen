@@ -19,13 +19,22 @@ OBJ				=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 INC_DIR			=	include
 INC_FLAGS		=	-I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
 
-CPU				=	$(shell uname -p)
-ifeq ($(CPU),arm)
-	LIBFT		=	libft_arm.a
-	FT			=	ft_arm
-else
-	LIBFT		=	libft_x86.a
-	FT			=	ft_x86
+DARWIN_ARM64	=	$(shell uname -a | grep Darwin | grep -E '(aarch64|arm64)')
+DARWIN_X86		=	$(shell uname -a | grep Darwin | grep -E x86)
+LINUX_ARM64		=	$(shell uname -a | grep Linux  | grep -E '(aarch64|arm64)')
+LINUX_X86		=	$(shell uname -a | grep Linux  | grep -E x86)
+ifneq ($(DARWIN_ARM64),)
+	LIBFT		=	libft_darwin_arm64.a
+	FT			=	ft_darwin_arm64
+else ifneq ($(DARWIN_X86),)
+	LIBFT		=	libft_darwin_x86.a
+	FT			=	ft_darwin_x86
+else ifneq ($(LINUX_ARM64),)
+	LIBFT		=	libft_linux_arm64.a
+	FT			=	ft_linux_arm66
+else ifneq ($(LINUX_X86),)
+	LIBFT		=	libft_linux_x86.a
+	FT			=	ft_linux_x86
 endif
 
 LIBFT_DIR		=	libft
