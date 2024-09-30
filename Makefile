@@ -19,24 +19,23 @@ OBJ				=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 INC_DIR			=	include
 INC_FLAGS		=	-I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
 
-LIBFT			=	libft.a
-FT				=	ft
-
 LIBFT_DIR		=	libft
+LIBFT			=	$(LIBFT_DIR)/libft.a
+FT				=	ft
 LIB_FLAGS		=	-L$(LIBFT_DIR) -l$(FT)
 #---------------------------------------------------------#
 NAME			=	pipex
 all:			$(NAME)
 
-$(NAME):		$(OBJ) $(LIBFT_DIR)/$(LIBFT)
-	$(LINKER) $(LIB_FLAGS) $(OBJ) -o $@
+$(NAME):		$(LIBFT) $(OBJ)
+	$(LINKER) $(OBJ) $(LIB_FLAGS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	$(COMPILER) $(INC_FLAGS) -c $< -o $@ 
 
-lib:			$(LIBFT_DIR)/$(LIBFT)
-$(LIBFT_DIR)/$(LIBFT):
+lib:			$(LIBFT)
+$(LIBFT):
 	@echo "LIBFT being created"
 	@$(MAKE) -C $(LIBFT_DIR)
 #---------------------------------------------------------#
@@ -50,7 +49,7 @@ fclean:		clean
 
 libclean:
 	rm -rf $(LIBFT_DIR)/$(OBJ_DIR)
-	rm -rf $(LIBFT_DIR)/$(LIBFT)
+	rm -rf $(LIBFT)
 
 ffclean: fclean libclean
 
@@ -69,7 +68,7 @@ OBJ_BONUS			=	$(patsubst $(SRC_DIR_BONUS)/%.c, $(OBJ_DIR_BONUS)/%.o, $(SRC_BONUS
 BONUS				=	pipex_bonus
 bonus:				$(BONUS)
 
-$(BONUS):			$(OBJ_BONUS) $(LIBFT_DIR)/$(LIBFT)
+$(BONUS):			$(LIBFT) $(OBJ_BONUS)
 	$(LINKER) $(OBJ_BONUS) $(LIB_FLAGS) -o $@
 
 $(OBJ_DIR_BONUS)/%.o: $(SRC_DIR_BONUS)/%.c
